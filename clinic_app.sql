@@ -1,0 +1,1857 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.3
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:3306
+-- Waktu pembuatan: 01 Jan 2026 pada 10.06
+-- Versi server: 8.4.3
+-- Versi PHP: 8.3.16
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Basis data: `clinic_app`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `bills`
+--
+
+CREATE TABLE `bills` (
+  `id` bigint UNSIGNED NOT NULL,
+  `bill_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `total_amount` decimal(15,2) DEFAULT NULL,
+  `status` enum('unpaid','paid') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'unpaid',
+  `notes` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `bills`
+--
+
+INSERT INTO `bills` (`id`, `bill_number`, `total_amount`, `status`, `notes`, `created_at`, `updated_at`) VALUES
+(1, 'BILL0000001 - 29112025', 13775000.00, 'unpaid', '', '2025-11-29 06:26:26', '2025-12-02 06:09:43');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `cache`
+--
+
+CREATE TABLE `cache` (
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiration` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `cache`
+--
+
+INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
+('clinic_app_cache_06b45192b9757c33125bd6795f71a92b', 'i:1;', 1767148382),
+('clinic_app_cache_06b45192b9757c33125bd6795f71a92b:timer', 'i:1767148382;', 1767148382),
+('clinic_app_cache_admin@dev.com|127.0.0.1', 'i:1;', 1765965332),
+('clinic_app_cache_admin@dev.com|127.0.0.1:timer', 'i:1765965332;', 1765965332),
+('clinic_app_cache_fortify.2fa_codes.09bf36f82e15c3d04e8a0f19f4500cc5', 'i:58865503;', 1765965159),
+('clinic_app_cache_fortify.2fa_codes.0c411ce63f72a6f8d2a2ecb4b8732880', 'i:58865508;', 1765965307),
+('clinic_app_cache_fortify.2fa_codes.0d62840d9710aaecddf6b9cbff36eb9d', 'i:58886240;', 1766587266),
+('clinic_app_cache_fortify.2fa_codes.100825c54915e8b09ca221169b88a0f1', 'i:58900119;', 1767003644),
+('clinic_app_cache_fortify.2fa_codes.1238f635c15af8b8dd46d0ccf0f9a057', 'i:58897604;', 1766928180),
+('clinic_app_cache_fortify.2fa_codes.15d0a9cbff5d5eb05aa0632be5b9a98f', 'i:58865499;', 1765965052),
+('clinic_app_cache_fortify.2fa_codes.22691b64655a3dd2cba740d4ed23ce8b', 'i:58865509;', 1765965348),
+('clinic_app_cache_fortify.2fa_codes.3966db6420f4924a9dd0d71c51280494', 'i:58883155;', 1766494733),
+('clinic_app_cache_fortify.2fa_codes.406e592ed5dd1d8f8b56ca69d0c91169', 'i:58876864;', 1766306005),
+('clinic_app_cache_fortify.2fa_codes.54d1f97231d43fe21fb3cc5567ecf6cb', 'i:58868473;', 1766054260),
+('clinic_app_cache_fortify.2fa_codes.56caa479e4d7c286ab5519b85a29ea08', 'i:58904944;', 1767148383),
+('clinic_app_cache_fortify.2fa_codes.66e0cbe7d75740d53b20f681bc165089', 'i:58900401;', 1767012117),
+('clinic_app_cache_fortify.2fa_codes.6910ef906237762a94d764109d0f7b95', 'i:58865500;', 1765965089),
+('clinic_app_cache_fortify.2fa_codes.753b98efa5f55569221176fa34d9b7b5', 'i:58885988;', 1766579710),
+('clinic_app_cache_fortify.2fa_codes.898d5a583a09122e147e01c6ac1d61b3', 'i:58886196;', 1766585962),
+('clinic_app_cache_fortify.2fa_codes.aacfae3cb42c8800f787865c3cfbf462', 'i:58879912;', 1766397447),
+('clinic_app_cache_fortify.2fa_codes.abf11332a40565e363705ec4ec6599d4', 'i:58892359;', 1766770836),
+('clinic_app_cache_fortify.2fa_codes.adb6d1ef0008301c1b0b1db194d49804', 'i:58874094;', 1766222901),
+('clinic_app_cache_fortify.2fa_codes.b323476c97922d5b1db3b32a9ff861aa', 'i:58886303;', 1766589151),
+('clinic_app_cache_fortify.2fa_codes.b6b71144d119b09a9a69b3129a8ccd4e', 'i:58882945;', 1766488436),
+('clinic_app_cache_fortify.2fa_codes.c9619dab4abaebd19bf36a194ad5f77a', 'i:58886323;', 1766589770),
+('clinic_app_cache_fortify.2fa_codes.c9f2ad36247d97b0e1a7eefd7d897d3b', 'i:58865932;', 1765978042),
+('clinic_app_cache_fortify.2fa_codes.cd1a5c698a2589b110b4f2b5c01229ce', 'i:58891644;', 1766749389),
+('clinic_app_cache_fortify.2fa_codes.dcc2bef9ce6c92006a3743d45d48a7a5', 'i:58865578;', 1765967425),
+('clinic_app_cache_fortify.2fa_codes.f041add12431498d820e8490a8d7d39a', 'i:58885705;', 1766571231),
+('clinic_app_cache_spatie.permission.cache', 'a:3:{s:5:\"alias\";a:4:{s:1:\"a\";s:2:\"id\";s:1:\"b\";s:4:\"name\";s:1:\"c\";s:10:\"guard_name\";s:1:\"r\";s:5:\"roles\";}s:11:\"permissions\";a:91:{i:0;a:4:{s:1:\"a\";i:1;s:1:\"b\";s:9:\"user.view\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:1;a:4:{s:1:\"a\";i:2;s:1:\"b\";s:11:\"user.create\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:2;a:4:{s:1:\"a\";i:3;s:1:\"b\";s:9:\"user.edit\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:3;a:4:{s:1:\"a\";i:4;s:1:\"b\";s:11:\"user.delete\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:4;a:4:{s:1:\"a\";i:5;s:1:\"b\";s:9:\"role.view\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:5;a:4:{s:1:\"a\";i:6;s:1:\"b\";s:11:\"role.create\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:6;a:4:{s:1:\"a\";i:7;s:1:\"b\";s:9:\"role.edit\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:7;a:4:{s:1:\"a\";i:8;s:1:\"b\";s:11:\"role.delete\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:8;a:4:{s:1:\"a\";i:10;s:1:\"b\";s:16:\"patientData.view\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:1;i:1;i:3;i:2;i:4;}}i:9;a:4:{s:1:\"a\";i:11;s:1:\"b\";s:18:\"patientData.create\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:4:{i:0;i:1;i:1;i:2;i:2;i:3;i:3;i:4;}}i:10;a:4:{s:1:\"a\";i:12;s:1:\"b\";s:16:\"patientData.edit\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:1;i:1;i:3;i:2;i:4;}}i:11;a:4:{s:1:\"a\";i:13;s:1:\"b\";s:18:\"patientData.delete\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:1;i:1;i:3;i:2;i:4;}}i:12;a:4:{s:1:\"a\";i:14;s:1:\"b\";s:15:\"permission.view\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:13;a:4:{s:1:\"a\";i:15;s:1:\"b\";s:17:\"permission.create\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:14;a:4:{s:1:\"a\";i:16;s:1:\"b\";s:15:\"permission.edit\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:15;a:4:{s:1:\"a\";i:17;s:1:\"b\";s:17:\"permission.delete\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:16;a:4:{s:1:\"a\";i:18;s:1:\"b\";s:15:\"healthData.view\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:17;a:4:{s:1:\"a\";i:19;s:1:\"b\";s:17:\"healthData.create\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:18;a:4:{s:1:\"a\";i:20;s:1:\"b\";s:15:\"healthData.edit\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:19;a:4:{s:1:\"a\";i:21;s:1:\"b\";s:17:\"healthData.delete\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:20;a:4:{s:1:\"a\";i:22;s:1:\"b\";s:18:\"patientRegist.view\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:3;}}i:21;a:4:{s:1:\"a\";i:23;s:1:\"b\";s:20:\"patientRegist.create\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:3;}}i:22;a:4:{s:1:\"a\";i:24;s:1:\"b\";s:18:\"patientRegist.edit\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:3;}}i:23;a:4:{s:1:\"a\";i:25;s:1:\"b\";s:20:\"patientRegist.delete\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:3;}}i:24;a:4:{s:1:\"a\";i:26;s:1:\"b\";s:13:\"billData.view\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:25;a:4:{s:1:\"a\";i:27;s:1:\"b\";s:15:\"billData.create\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:26;a:4:{s:1:\"a\";i:28;s:1:\"b\";s:13:\"billData.edit\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:27;a:4:{s:1:\"a\";i:29;s:1:\"b\";s:15:\"billData.delete\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:28;a:4:{s:1:\"a\";i:30;s:1:\"b\";s:17:\"diagnoseData.view\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:3;}}i:29;a:4:{s:1:\"a\";i:31;s:1:\"b\";s:19:\"diagnoseData.create\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:30;a:4:{s:1:\"a\";i:32;s:1:\"b\";s:17:\"diagnoseData.edit\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:31;a:4:{s:1:\"a\";i:33;s:1:\"b\";s:19:\"diagnoseData.delete\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:32;a:4:{s:1:\"a\";i:34;s:1:\"b\";s:16:\"financeData.view\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:33;a:4:{s:1:\"a\";i:35;s:1:\"b\";s:20:\"financeData.download\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:34;a:4:{s:1:\"a\";i:36;s:1:\"b\";s:16:\"inventories.view\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:35;a:4:{s:1:\"a\";i:37;s:1:\"b\";s:16:\"inventories.edit\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:36;a:4:{s:1:\"a\";i:38;s:1:\"b\";s:18:\"inventories.create\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:37;a:4:{s:1:\"a\";i:39;s:1:\"b\";s:18:\"inventories.delete\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:38;a:4:{s:1:\"a\";i:40;s:1:\"b\";s:18:\"marketingData.view\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:39;a:4:{s:1:\"a\";i:41;s:1:\"b\";s:20:\"marketingData.create\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:40;a:4:{s:1:\"a\";i:42;s:1:\"b\";s:18:\"marketingData.edit\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:41;a:4:{s:1:\"a\";i:43;s:1:\"b\";s:21:\"medicalWasteData.view\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:42;a:4:{s:1:\"a\";i:44;s:1:\"b\";s:23:\"medicalWasteData.create\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:43;a:4:{s:1:\"a\";i:45;s:1:\"b\";s:21:\"medicalWasteData.edit\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:44;a:4:{s:1:\"a\";i:46;s:1:\"b\";s:23:\"medicalWasteData.delete\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:45;a:4:{s:1:\"a\";i:47;s:1:\"b\";s:17:\"medicineData.view\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:46;a:4:{s:1:\"a\";i:48;s:1:\"b\";s:19:\"medicineData.create\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:47;a:4:{s:1:\"a\";i:49;s:1:\"b\";s:17:\"medicineData.edit\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:48;a:4:{s:1:\"a\";i:50;s:1:\"b\";s:19:\"medicineData.delete\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:49;a:4:{s:1:\"a\";i:51;s:1:\"b\";s:20:\"patientBillData.view\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:50;a:4:{s:1:\"a\";i:52;s:1:\"b\";s:22:\"patientBillData.create\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:51;a:4:{s:1:\"a\";i:53;s:1:\"b\";s:20:\"patientBillData.edit\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:52;a:4:{s:1:\"a\";i:54;s:1:\"b\";s:22:\"patientBillData.delete\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:53;a:4:{s:1:\"a\";i:55;s:1:\"b\";s:21:\"prescriptionData.view\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:3;}}i:54;a:4:{s:1:\"a\";i:56;s:1:\"b\";s:23:\"prescriptionData.create\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:55;a:4:{s:1:\"a\";i:57;s:1:\"b\";s:21:\"prescriptionData.edit\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:56;a:4:{s:1:\"a\";i:58;s:1:\"b\";s:23:\"prescriptionData.delete\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:57;a:4:{s:1:\"a\";i:59;s:1:\"b\";s:27:\"purchaseDeliveryStatus.view\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:58;a:4:{s:1:\"a\";i:61;s:1:\"b\";s:27:\"purchaseDeliveryStatus.edit\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:59;a:4:{s:1:\"a\";i:62;s:1:\"b\";s:29:\"purchaseDeliveryStatus.delete\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:60;a:4:{s:1:\"a\";i:63;s:1:\"b\";s:17:\"purchaseData.view\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:61;a:4:{s:1:\"a\";i:64;s:1:\"b\";s:19:\"purchaseData.create\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:62;a:4:{s:1:\"a\";i:65;s:1:\"b\";s:17:\"purchaseData.edit\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:63;a:4:{s:1:\"a\";i:66;s:1:\"b\";s:19:\"purchaseData.delete\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:64;a:4:{s:1:\"a\";i:67;s:1:\"b\";s:16:\"requestItem.view\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:65;a:4:{s:1:\"a\";i:68;s:1:\"b\";s:18:\"requestItem.create\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:66;a:4:{s:1:\"a\";i:69;s:1:\"b\";s:16:\"requestItem.edit\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:67;a:4:{s:1:\"a\";i:70;s:1:\"b\";s:18:\"requestItem.delete\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:68;a:4:{s:1:\"a\";i:71;s:1:\"b\";s:20:\"staffSalaryData.view\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:69;a:4:{s:1:\"a\";i:72;s:1:\"b\";s:22:\"staffSalaryData.create\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:70;a:4:{s:1:\"a\";i:73;s:1:\"b\";s:20:\"staffSalaryData.edit\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:71;a:4:{s:1:\"a\";i:74;s:1:\"b\";s:22:\"staffSalaryData.delete\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:72;a:4:{s:1:\"a\";i:75;s:1:\"b\";s:18:\"staffPaidData.view\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:73;a:4:{s:1:\"a\";i:76;s:1:\"b\";s:20:\"staffPaidData.create\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:74;a:4:{s:1:\"a\";i:77;s:1:\"b\";s:18:\"staffPaidData.edit\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:75;a:4:{s:1:\"a\";i:78;s:1:\"b\";s:20:\"staffPaidData.delete\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:76;a:4:{s:1:\"a\";i:79;s:1:\"b\";s:17:\"supplierData.view\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:77;a:4:{s:1:\"a\";i:80;s:1:\"b\";s:17:\"supplierData.edit\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:78;a:4:{s:1:\"a\";i:81;s:1:\"b\";s:19:\"supplierData.create\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:79;a:4:{s:1:\"a\";i:82;s:1:\"b\";s:19:\"supplierData.delete\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:80;a:4:{s:1:\"a\";i:83;s:1:\"b\";s:16:\"utilityCost.view\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:81;a:4:{s:1:\"a\";i:84;s:1:\"b\";s:18:\"utilityCost.create\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:82;a:4:{s:1:\"a\";i:85;s:1:\"b\";s:16:\"utilityCost.edit\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:83;a:4:{s:1:\"a\";i:86;s:1:\"b\";s:18:\"utilityCost.delete\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:84;a:4:{s:1:\"a\";i:87;s:1:\"b\";s:20:\"marketingData.delete\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:85;a:4:{s:1:\"a\";i:88;s:1:\"b\";s:18:\"utilitiesData.view\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:86;a:4:{s:1:\"a\";i:89;s:1:\"b\";s:20:\"utilitiesData.create\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:87;a:4:{s:1:\"a\";i:90;s:1:\"b\";s:18:\"utilitiesData.edit\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:88;a:4:{s:1:\"a\";i:91;s:1:\"b\";s:20:\"utilitiesData.delete\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:89;a:4:{s:1:\"a\";i:92;s:1:\"b\";s:19:\"purchaseStatus.view\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}i:90;a:4:{s:1:\"a\";i:93;s:1:\"b\";s:19:\"purchaseStatus.edit\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:2;}}}s:5:\"roles\";a:4:{i:0;a:3:{s:1:\"a\";i:1;s:1:\"b\";s:11:\"Super Admin\";s:1:\"c\";s:3:\"web\";}i:1;a:3:{s:1:\"a\";i:2;s:1:\"b\";s:10:\"Management\";s:1:\"c\";s:3:\"web\";}i:2;a:3:{s:1:\"a\";i:3;s:1:\"b\";s:5:\"Nurse\";s:1:\"c\";s:3:\"web\";}i:3;a:3:{s:1:\"a\";i:4;s:1:\"b\";s:6:\"Doctor\";s:1:\"c\";s:3:\"web\";}}}', 1767234727);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `cache_locks`
+--
+
+CREATE TABLE `cache_locks` (
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `owner` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiration` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `diagnoses`
+--
+
+CREATE TABLE `diagnoses` (
+  `id` bigint UNSIGNED NOT NULL,
+  `diagnose_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `patient_id` bigint UNSIGNED NOT NULL,
+  `doctor_id` bigint UNSIGNED NOT NULL,
+  `diagnosis` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `treatment` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `notes` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `diagnoses`
+--
+
+INSERT INTO `diagnoses` (`id`, `diagnose_code`, `patient_id`, `doctor_id`, `diagnosis`, `treatment`, `notes`, `created_at`, `updated_at`) VALUES
+(59, 'DR-admN-AmaI-D001', 16, 3, 'example diagnosis 1', 'example treatment 1', 'example notes 1', '2025-12-15 04:28:47', '2025-12-15 04:28:47');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `failed_jobs`
+--
+
+CREATE TABLE `failed_jobs` (
+  `id` bigint UNSIGNED NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `failed_jobs`
+--
+
+INSERT INTO `failed_jobs` (`id`, `uuid`, `connection`, `queue`, `payload`, `exception`, `failed_at`) VALUES
+(1, '1c0f1cbc-9f72-4bdd-8be0-07d288a8a923', 'database', 'default', '{\"uuid\":\"1c0f1cbc-9f72-4bdd-8be0-07d288a8a923\",\"displayName\":\"App\\\\Jobs\\\\ExportClinics\",\"job\":\"Illuminate\\\\Queue\\\\CallQueuedHandler@call\",\"maxTries\":null,\"maxExceptions\":null,\"failOnTimeout\":false,\"backoff\":null,\"timeout\":null,\"retryUntil\":null,\"data\":{\"commandName\":\"App\\\\Jobs\\\\ExportClinics\",\"command\":\"O:22:\\\"App\\\\Jobs\\\\ExportClinics\\\":0:{}\"},\"createdAt\":1767013472,\"delay\":null}', 'Illuminate\\Contracts\\Container\\BindingResolutionException: Unable to resolve dependency [Parameter #0 [ <required> int $year ]] in class App\\Jobs\\ExportClinics in D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php:198\nStack trace:\n#0 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(127): Illuminate\\Container\\BoundMethod::addDependencyForCallParameter(Object(Illuminate\\Foundation\\Application), Object(ReflectionParameter), Array, Array)\n#1 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Container\\BoundMethod::getMethodDependencies(Object(Illuminate\\Foundation\\Application), Array, Array)\n#2 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(43): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#3 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(96): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))\n#4 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))\n#5 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(799): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)\n#6 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Bus\\Dispatcher.php(129): Illuminate\\Container\\Container->call(Array)\n#7 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Bus\\Dispatcher->Illuminate\\Bus\\{closure}(Object(App\\Jobs\\ExportClinics))\n#8 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(137): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(App\\Jobs\\ExportClinics))\n#9 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Bus\\Dispatcher.php(133): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))\n#10 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\CallQueuedHandler.php(134): Illuminate\\Bus\\Dispatcher->dispatchNow(Object(App\\Jobs\\ExportClinics), false)\n#11 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Queue\\CallQueuedHandler->Illuminate\\Queue\\{closure}(Object(App\\Jobs\\ExportClinics))\n#12 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(137): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(App\\Jobs\\ExportClinics))\n#13 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\CallQueuedHandler.php(127): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))\n#14 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\CallQueuedHandler.php(68): Illuminate\\Queue\\CallQueuedHandler->dispatchThroughMiddleware(Object(Illuminate\\Queue\\Jobs\\DatabaseJob), Object(App\\Jobs\\ExportClinics))\n#15 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Jobs\\Job.php(102): Illuminate\\Queue\\CallQueuedHandler->call(Object(Illuminate\\Queue\\Jobs\\DatabaseJob), Array)\n#16 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Worker.php(487): Illuminate\\Queue\\Jobs\\Job->fire()\n#17 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Worker.php(437): Illuminate\\Queue\\Worker->process(\'database\', Object(Illuminate\\Queue\\Jobs\\DatabaseJob), Object(Illuminate\\Queue\\WorkerOptions))\n#18 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Worker.php(358): Illuminate\\Queue\\Worker->runJob(Object(Illuminate\\Queue\\Jobs\\DatabaseJob), \'database\', Object(Illuminate\\Queue\\WorkerOptions))\n#19 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Console\\WorkCommand.php(148): Illuminate\\Queue\\Worker->runNextJob(\'database\', \'default\', Object(Illuminate\\Queue\\WorkerOptions))\n#20 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Console\\WorkCommand.php(131): Illuminate\\Queue\\Console\\WorkCommand->runWorker(\'database\', \'default\')\n#21 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Queue\\Console\\WorkCommand->handle()\n#22 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(43): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#23 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(96): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))\n#24 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))\n#25 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(799): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)\n#26 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(211): Illuminate\\Container\\Container->call(Array)\n#27 D:\\laragon\\www\\clinic_app\\vendor\\symfony\\console\\Command\\Command.php(341): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))\n#28 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(180): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))\n#29 D:\\laragon\\www\\clinic_app\\vendor\\symfony\\console\\Application.php(1102): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#30 D:\\laragon\\www\\clinic_app\\vendor\\symfony\\console\\Application.php(356): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Queue\\Console\\WorkCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#31 D:\\laragon\\www\\clinic_app\\vendor\\symfony\\console\\Application.php(195): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#32 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(198): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#33 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1235): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#34 D:\\laragon\\www\\clinic_app\\artisan(16): Illuminate\\Foundation\\Application->handleCommand(Object(Symfony\\Component\\Console\\Input\\ArgvInput))\n#35 {main}', '2025-12-29 06:04:33'),
+(2, 'ebc8e6b9-d027-46b4-8edf-bf14297bc277', 'database', 'default', '{\"uuid\":\"ebc8e6b9-d027-46b4-8edf-bf14297bc277\",\"displayName\":\"App\\\\Jobs\\\\ExportClinics\",\"job\":\"Illuminate\\\\Queue\\\\CallQueuedHandler@call\",\"maxTries\":null,\"maxExceptions\":null,\"failOnTimeout\":false,\"backoff\":null,\"timeout\":null,\"retryUntil\":null,\"data\":{\"commandName\":\"App\\\\Jobs\\\\ExportClinics\",\"command\":\"O:22:\\\"App\\\\Jobs\\\\ExportClinics\\\":0:{}\"},\"createdAt\":1767013487,\"delay\":null}', 'Illuminate\\Contracts\\Container\\BindingResolutionException: Unable to resolve dependency [Parameter #0 [ <required> int $year ]] in class App\\Jobs\\ExportClinics in D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php:198\nStack trace:\n#0 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(127): Illuminate\\Container\\BoundMethod::addDependencyForCallParameter(Object(Illuminate\\Foundation\\Application), Object(ReflectionParameter), Array, Array)\n#1 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Container\\BoundMethod::getMethodDependencies(Object(Illuminate\\Foundation\\Application), Array, Array)\n#2 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(43): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#3 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(96): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))\n#4 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))\n#5 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(799): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)\n#6 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Bus\\Dispatcher.php(129): Illuminate\\Container\\Container->call(Array)\n#7 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Bus\\Dispatcher->Illuminate\\Bus\\{closure}(Object(App\\Jobs\\ExportClinics))\n#8 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(137): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(App\\Jobs\\ExportClinics))\n#9 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Bus\\Dispatcher.php(133): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))\n#10 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\CallQueuedHandler.php(134): Illuminate\\Bus\\Dispatcher->dispatchNow(Object(App\\Jobs\\ExportClinics), false)\n#11 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(180): Illuminate\\Queue\\CallQueuedHandler->Illuminate\\Queue\\{closure}(Object(App\\Jobs\\ExportClinics))\n#12 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(137): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(App\\Jobs\\ExportClinics))\n#13 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\CallQueuedHandler.php(127): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))\n#14 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\CallQueuedHandler.php(68): Illuminate\\Queue\\CallQueuedHandler->dispatchThroughMiddleware(Object(Illuminate\\Queue\\Jobs\\DatabaseJob), Object(App\\Jobs\\ExportClinics))\n#15 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Jobs\\Job.php(102): Illuminate\\Queue\\CallQueuedHandler->call(Object(Illuminate\\Queue\\Jobs\\DatabaseJob), Array)\n#16 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Worker.php(487): Illuminate\\Queue\\Jobs\\Job->fire()\n#17 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Worker.php(437): Illuminate\\Queue\\Worker->process(\'database\', Object(Illuminate\\Queue\\Jobs\\DatabaseJob), Object(Illuminate\\Queue\\WorkerOptions))\n#18 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Worker.php(358): Illuminate\\Queue\\Worker->runJob(Object(Illuminate\\Queue\\Jobs\\DatabaseJob), \'database\', Object(Illuminate\\Queue\\WorkerOptions))\n#19 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Console\\WorkCommand.php(148): Illuminate\\Queue\\Worker->runNextJob(\'database\', \'default\', Object(Illuminate\\Queue\\WorkerOptions))\n#20 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Queue\\Console\\WorkCommand.php(131): Illuminate\\Queue\\Console\\WorkCommand->runWorker(\'database\', \'default\')\n#21 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Queue\\Console\\WorkCommand->handle()\n#22 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(43): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()\n#23 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(96): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))\n#24 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))\n#25 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(799): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)\n#26 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(211): Illuminate\\Container\\Container->call(Array)\n#27 D:\\laragon\\www\\clinic_app\\vendor\\symfony\\console\\Command\\Command.php(341): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))\n#28 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(180): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))\n#29 D:\\laragon\\www\\clinic_app\\vendor\\symfony\\console\\Application.php(1102): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#30 D:\\laragon\\www\\clinic_app\\vendor\\symfony\\console\\Application.php(356): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Queue\\Console\\WorkCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#31 D:\\laragon\\www\\clinic_app\\vendor\\symfony\\console\\Application.php(195): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#32 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(198): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#33 D:\\laragon\\www\\clinic_app\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1235): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))\n#34 D:\\laragon\\www\\clinic_app\\artisan(16): Illuminate\\Foundation\\Application->handleCommand(Object(Symfony\\Component\\Console\\Input\\ArgvInput))\n#35 {main}', '2025-12-29 06:04:49');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `inventories`
+--
+
+CREATE TABLE `inventories` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `supplier_id` bigint UNSIGNED NOT NULL,
+  `type` enum('medicine','equipment') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `quantity` int UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `inventories`
+--
+
+INSERT INTO `inventories` (`id`, `name`, `supplier_id`, `type`, `quantity`, `created_at`, `updated_at`) VALUES
+(5, 'example 3', 1, 'medicine', 4, '2025-12-06 05:33:58', '2025-12-20 02:49:19');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `jobs`
+--
+
+CREATE TABLE `jobs` (
+  `id` bigint UNSIGNED NOT NULL,
+  `queue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attempts` tinyint UNSIGNED NOT NULL,
+  `reserved_at` int UNSIGNED DEFAULT NULL,
+  `available_at` int UNSIGNED NOT NULL,
+  `created_at` int UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `job_batches`
+--
+
+CREATE TABLE `job_batches` (
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `total_jobs` int NOT NULL,
+  `pending_jobs` int NOT NULL,
+  `failed_jobs` int NOT NULL,
+  `failed_job_ids` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `options` mediumtext COLLATE utf8mb4_unicode_ci,
+  `cancelled_at` int DEFAULT NULL,
+  `created_at` int NOT NULL,
+  `finished_at` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `marketing_costs`
+--
+
+CREATE TABLE `marketing_costs` (
+  `id` bigint UNSIGNED NOT NULL,
+  `marketing_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `amount` decimal(15,2) NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `bill_id` bigint UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `marketing_costs`
+--
+
+INSERT INTO `marketing_costs` (`id`, `marketing_id`, `name`, `amount`, `description`, `bill_id`, `created_at`, `updated_at`) VALUES
+(4, 'MARK0000001 - 29112025', 'example 1', 500000.00, 'example description from marketing 1', 1, '2025-11-29 07:00:38', '2025-11-29 07:00:38');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `medical_waste_management_costs`
+--
+
+CREATE TABLE `medical_waste_management_costs` (
+  `id` bigint UNSIGNED NOT NULL,
+  `medical_waste_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `amount` decimal(15,2) NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `bill_id` bigint UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `medical_waste_management_costs`
+--
+
+INSERT INTO `medical_waste_management_costs` (`id`, `medical_waste_id`, `name`, `amount`, `description`, `bill_id`, `created_at`, `updated_at`) VALUES
+(2, 'MEDWASTE0000001 - 30112025', 'example 1', 1000000.00, 'example description from medical waste 1', 1, '2025-11-30 04:57:56', '2025-11-30 04:58:17');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `medicines`
+--
+
+CREATE TABLE `medicines` (
+  `id` bigint UNSIGNED NOT NULL,
+  `inventory_id` bigint UNSIGNED NOT NULL,
+  `form` enum('Tablets','Capsules','Powders and Granules','Lozenges','Suppositories','Solutions','Elixirs','Suspensions','Drops','Ointments','Creams','Gels','Pastes','Inhalers','Aerosols','Nebulizers','Implants','Transdermal Patches','Oral Films','Other') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `delivery_systems` enum('Oral','Parenteral','Topical','Inhalation','Transdermal') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `strength` int NOT NULL,
+  `strength_units` enum('mg','ml','µg','g') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiry_date` date DEFAULT NULL,
+  `sell_price_per_unit` decimal(8,2) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `medicines`
+--
+
+INSERT INTO `medicines` (`id`, `inventory_id`, `form`, `delivery_systems`, `strength`, `strength_units`, `batch_number`, `expiry_date`, `sell_price_per_unit`, `created_at`, `updated_at`) VALUES
+(7, 5, 'Solutions', 'Parenteral', 35, 'ml', '1001194', '2028-01-11', 100000.00, '2025-12-06 05:41:44', '2025-12-20 02:32:32');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(148, '0001_01_01_000000_create_users_table', 1),
+(149, '0001_01_01_000001_create_cache_table', 1),
+(150, '0001_01_01_000002_create_jobs_table', 1),
+(151, '2025_08_26_100418_add_two_factor_columns_to_users_table', 1),
+(152, '2025_10_08_141537_create_patients_table', 1),
+(153, '2025_10_14_121620_create_patient_registrations_table', 1),
+(154, '2025_10_14_124847_patient_health_data', 1),
+(155, '2025_10_16_124421_create_permission_tables', 1),
+(156, '2025_10_22_093956_drop_patient_number_from_patient_registrations', 2),
+(157, '2025_10_22_094519_drop_doctor_from_patient_registrations', 3),
+(158, '2025_10_22_094610_add_doctor_from_patient_registrations', 4),
+(159, '2025_10_22_094820_drop_doctor_from_patient_registrations', 5),
+(160, '2025_10_22_094918_add_doctor_column_after_patient_id_from_patient_registrations', 6),
+(161, '2025_10_22_095813_drop_patient_id_form_patients_health_data', 7),
+(162, '2025_10_22_100145_add_patient_id_in_patient_health_data', 8),
+(165, '2025_10_22_102623_add_doctor_to_patient_registrations', 9),
+(176, '2025_10_24_104259_delete_patient_health_data', 10),
+(183, '2025_10_24_104508_create_patient_health_data', 11),
+(189, '2025_10_26_125428_create_drugs', 12),
+(240, '2025_10_24_104532_create_patient_registrations', 13),
+(243, '2025_10_26_125428_create_medicines', 14),
+(244, '2025_10_26_133430_create_diagnoses', 14),
+(245, '2025_10_26_133435_create_prescriptions', 14),
+(246, '2025_10_28_151347_drop_patient_id_and_doctor_id_from_prescription', 15),
+(248, '2025_10_29_131959_change_prescription_code_to_normal_from_unique_in_prescriptions', 16),
+(251, '2025_11_02_124226_remove_purchase_price_add_price', 17),
+(252, '2025_11_02_130512_create_suppliers', 18),
+(257, '2025_11_02_131346_drop_quantity_in_stock_table_name_table_manufacturer_table_from_medicines', 19),
+(264, '2025_11_03_112019_create_inventories', 20),
+(548, '2025_11_03_113306_create_bills', 21),
+(549, '2025_11_03_113417_create_purchase_requests', 21),
+(550, '2025_11_03_114509_create_request_items', 21),
+(551, '2025_11_11_114524_create_purchase_delivery_statuses', 21),
+(552, '2025_11_13_112206_create_staff_salaries', 21),
+(553, '2025_11_13_120055_create_total_utility_costs', 21),
+(554, '2025_11_13_120134_create_utility_costs', 21),
+(555, '2025_11_13_120137_create_medical_waste_management_costs', 21),
+(556, '2025_11_13_120224_create_marketing_costs', 21),
+(557, '2025_11_13_120423_create_total_staff_salary_costs', 21),
+(558, '2025_11_13_120618_create_staff_salary_costs', 21),
+(560, '2025_12_04_120129_drop_manufacturer_from_inventories_table', 22),
+(561, '2025_12_06_124746_add_status_to_prescriptions_table', 23),
+(572, '2025_12_07_113129_create_total_patient_bills', 24),
+(573, '2025_12_07_113200_create_patient_diagnose_bills', 24),
+(574, '2025_12_07_113219_create_patient_prescription_bills', 24),
+(575, '2025_12_07_121651_add_status_column_for_patient_registration', 24),
+(576, '2025_12_09_101619_add_status_row_in_total_patient_bills', 25),
+(577, '2025_12_09_113432_add_bill_code_row_in_total_patient_bills_table', 26),
+(578, '2025_12_20_093436_drop_quantity_in_stock_from_meidicnes_table', 27),
+(580, '2025_12_21_091159_add_photo_profile_row_in_users_table', 28);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `model_has_permissions`
+--
+
+CREATE TABLE `model_has_permissions` (
+  `permission_id` bigint UNSIGNED NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_id` bigint UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `model_has_roles`
+--
+
+CREATE TABLE `model_has_roles` (
+  `role_id` bigint UNSIGNED NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_id` bigint UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `model_has_roles`
+--
+
+INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
+(1, 'App\\Models\\User', 2),
+(1, 'App\\Models\\User', 3),
+(4, 'App\\Models\\User', 3),
+(2, 'App\\Models\\User', 4),
+(3, 'App\\Models\\User', 5),
+(4, 'App\\Models\\User', 6);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `password_reset_tokens`
+--
+
+CREATE TABLE `password_reset_tokens` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `patients`
+--
+
+CREATE TABLE `patients` (
+  `id` bigint UNSIGNED NOT NULL,
+  `patient_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `patient_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sex` enum('Male','Female') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `blood_type` enum('A','B','AB','O') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `birth_date` date NOT NULL,
+  `phone_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `patients`
+--
+
+INSERT INTO `patients` (`id`, `patient_number`, `patient_name`, `sex`, `blood_type`, `birth_date`, `phone_number`, `address`, `created_at`, `updated_at`) VALUES
+(1, 'PTN-2025P0000001', 'Arta Cakrabirawa Napitupulu', 'Male', 'AB', '1985-08-06', '(+62) 866 0405 8208', 'Ki. Acordion No. 209, Administrasi Jakarta Selatan 81453, NTT', '2025-10-20 03:03:28', '2025-10-20 03:03:28'),
+(2, 'PTN-2025P0000002', 'Kusuma Sihotang', 'Female', 'A', '2022-10-11', '(+62) 540 2862 370', 'Ds. Kusmanto No. 262, Pariaman 77499, Jatim', '2025-10-20 03:03:28', '2025-10-20 03:03:28'),
+(3, 'PTN-2025P0000003', 'Hartana Halim', 'Female', 'O', '2018-08-25', '(+62) 724 0632 718', 'Jln. Warga No. 681, Sorong 50170, Kaltim', '2025-10-20 03:03:28', '2025-10-20 03:03:28'),
+(4, 'PTN-2025P0000004', 'Aswani Kemal Zulkarnain', 'Female', 'A', '1987-04-24', '(+62) 21 2291 0433', 'Jln. Reksoninten No. 515, Pematangsiantar 52178, Jateng', '2025-10-20 03:03:28', '2025-10-20 03:03:28'),
+(5, 'PTN-2025P0000005', 'Padmi Faizah Haryanti M.Pd', 'Male', 'B', '1990-08-28', '0585 6937 974', 'Dk. Radio No. 922, Kotamobagu 99502, Sulsel', '2025-10-20 03:03:28', '2025-10-20 03:03:28'),
+(6, 'PTN-2025P0000006', 'Wulan Nova Mayasari M.TI.', 'Female', 'B', '2003-09-24', '0362 2363 7341', 'Gg. Jaksa No. 781, Tomohon 25021, Aceh', '2025-10-20 03:03:28', '2025-10-20 03:03:28'),
+(7, 'PTN-2025P0000007', 'Maras Hidayanto S.Gz', 'Female', 'A', '1982-01-05', '(+62) 586 0481 405', 'Ds. Bata Putih No. 420, Binjai 97728, Sultra', '2025-10-20 03:03:28', '2025-10-20 03:03:28'),
+(8, 'PTN-2025P0000008', 'Zelaya Elisa Wulandari', 'Male', 'A', '2020-04-04', '(+62) 756 3987 9533', 'Kpg. Bakau Griya Utama No. 992, Mataram 92675, Pabar', '2025-10-20 03:03:28', '2025-10-20 03:03:28'),
+(9, 'PTN-2025P0000009', 'Surya Tarihoran', 'Male', 'A', '1974-09-09', '(+62) 888 6084 308', 'Jln. Gegerkalong Hilir No. 825, Administrasi Jakarta Barat 33655, Bali', '2025-10-20 03:03:28', '2025-10-20 03:03:28'),
+(10, 'PTN-2025P0000010', 'Harto Rajasa', 'Female', 'AB', '1984-06-03', '(+62) 712 6400 360', 'Gg. Gedebage Selatan No. 590, Kendari 54811, Sumsel', '2025-10-20 03:03:28', '2025-10-20 03:03:28'),
+(11, 'PTN-2025P0000011', 'Lili Haryanti', 'Male', 'B', '2007-01-25', '0225 8484 1821', 'Psr. Baranang Siang Indah No. 823, Jayapura 58304, Sulsel', '2025-10-20 03:03:28', '2025-10-20 03:03:28'),
+(12, 'PTN-2025P0000012', 'Mahdi Viktor Mansur', 'Male', 'A', '2023-12-01', '(+62) 346 0821 0092', 'Kpg. Imam No. 498, Jambi 27605, Kalteng', '2025-10-20 03:03:28', '2025-10-20 03:03:28'),
+(13, 'PTN-2025P0000013', 'Danu Pratama', 'Female', 'B', '1978-11-13', '0741 4825 359', 'Kpg. Bakaru No. 595, Bitung 61678, Kalbar', '2025-10-20 03:03:28', '2025-10-20 03:03:28'),
+(14, 'PTN-2025P0000014', 'Eko Tarihoran', 'Female', 'AB', '2019-10-06', '0803 8743 4069', 'Ds. Sampangan No. 730, Tidore Kepulauan 55031, DIY', '2025-10-20 03:03:28', '2025-10-20 03:03:28'),
+(15, 'PTN-2025P0000015', 'Yono Napitupulu', 'Male', 'B', '1996-05-19', '(+62) 834 4300 0418', 'Ds. Barasak No. 277, Payakumbuh 22327, NTT', '2025-10-20 03:03:28', '2025-10-20 03:03:28'),
+(16, 'PTN-2025P0000016', 'Amalia Yulianti', 'Female', 'O', '1988-01-01', '0290 3003 2805', 'Ki. Mulyadi No. 202, Banjarmasin 66823, Jambi', '2025-10-20 03:03:28', '2025-10-20 03:03:28'),
+(17, 'PTN-2025P0000017', 'Radit Pangestu', 'Male', 'A', '1989-12-28', '(+62) 975 3831 3203', 'Ds. Ki Hajar Dewantara No. 396, Sibolga 92082, Maluku', '2025-10-20 03:03:29', '2025-10-20 03:03:29'),
+(18, 'PTN-2025P0000018', 'Jabal Sitompul', 'Male', 'O', '1972-01-23', '(+62) 842 960 566', 'Kpg. Gedebage Selatan No. 270, Prabumulih 70867, Sumut', '2025-10-20 03:03:29', '2025-10-20 03:03:29'),
+(19, 'PTN-2025P0000019', 'Usyi Yani Wulandari', 'Male', 'AB', '2003-03-21', '0885 076 080', 'Kpg. Rajiman No. 680, Banjar 53747, Babel', '2025-10-20 03:03:29', '2025-10-20 03:03:29'),
+(20, 'PTN-2025P0000020', 'Kamila Andriani', 'Female', 'A', '1991-04-04', '(+62) 419 8333 4959', 'Jr. Sutan Syahrir No. 441, Banda Aceh 55342, Kaltim', '2025-10-20 03:03:29', '2025-10-20 03:03:29'),
+(21, 'PTN-2025P0000021', 'Ikhsan Gantar Pratama', 'Female', 'A', '1982-01-13', '(+62) 263 4923 7278', 'Gg. Kebonjati No. 831, Makassar 67433, Kalteng', '2025-10-20 03:03:29', '2025-10-20 03:03:29'),
+(22, 'PTN-2025P0000022', 'Kezia Yani Pratiwi S.Sos', 'Female', 'AB', '1975-01-17', '0310 0595 634', 'Kpg. Pattimura No. 323, Tanjung Pinang 83877, Jateng', '2025-10-20 03:03:29', '2025-10-20 03:03:29'),
+(23, 'PTN-2025P0000023', 'Endah Pratiwi S.Gz', 'Male', 'B', '2007-10-19', '(+62) 559 7118 582', 'Psr. Yohanes No. 775, Bandung 58281, Aceh', '2025-10-20 03:03:29', '2025-10-20 03:03:29'),
+(24, 'PTN-2025P0000024', 'Dinda Haryanti', 'Male', 'A', '1985-06-03', '(+62) 26 7400 165', 'Kpg. M.T. Haryono No. 88, Gorontalo 76832, Kaltim', '2025-10-20 03:03:29', '2025-10-20 03:03:29'),
+(25, 'PTN-2025P0000025', 'Talia Nuraini', 'Female', 'AB', '1994-02-04', '0825 7969 817', 'Kpg. Baik No. 54, Solok 63886, Sulsel', '2025-10-20 03:03:29', '2025-10-20 03:03:29'),
+(26, 'PTN-2025P0000026', 'Opung Bakda Sitompul', 'Male', 'O', '2004-02-05', '0808 0839 6876', 'Ds. Salatiga No. 341, Surakarta 62965, NTT', '2025-10-20 03:03:29', '2025-10-20 03:03:29'),
+(27, 'PTN-2025P0000027', 'Najam Kacung Hakim', 'Male', 'B', '1976-09-11', '0522 8995 0929', 'Kpg. Veteran No. 172, Makassar 57762, Babel', '2025-10-20 03:03:29', '2025-10-20 03:03:29'),
+(28, 'PTN-2025P0000028', 'Qori Namaga S.Psi', 'Female', 'A', '1987-11-08', '(+62) 574 3340 478', 'Jln. Basudewo No. 209, Bima 27046, Kalbar', '2025-10-20 03:03:29', '2025-10-20 03:03:29'),
+(29, 'PTN-2025P0000029', 'Najam Sitompul S.Pt', 'Male', 'A', '1991-03-22', '(+62) 971 9951 3865', 'Kpg. Pahlawan No. 324, Payakumbuh 46587, Sulteng', '2025-10-20 03:03:29', '2025-10-20 03:03:29'),
+(30, 'PTN-2025P0000030', 'Devi Mulyani', 'Male', 'AB', '1988-08-28', '0980 4624 282', 'Kpg. Kartini No. 993, Tegal 79612, Jatim', '2025-10-20 03:03:29', '2025-10-20 03:03:29'),
+(31, 'PTN-2025P0000031', 'Violet Ulva Pudjiastuti M.Kom.', 'Male', 'AB', '2019-09-13', '(+62) 785 4717 8308', 'Gg. Madiun No. 106, Palangka Raya 21224, Kalbar', '2025-10-20 03:03:29', '2025-10-20 03:03:29'),
+(32, 'PTN-2025P0000032', 'Marwata Waskita M.Pd', 'Female', 'A', '1977-06-03', '0326 9875 0286', 'Jln. Uluwatu No. 489, Bukittinggi 28313, Jatim', '2025-10-20 03:03:29', '2025-10-20 03:03:29'),
+(33, 'PTN-2025P0000033', 'Keisha Purnawati S.Psi', 'Female', 'O', '1989-05-23', '029 5909 4153', 'Kpg. B.Agam Dlm No. 236, Pariaman 58702, Jatim', '2025-10-20 03:03:30', '2025-10-20 03:03:30'),
+(34, 'PTN-2025P0000034', 'Mustika Widodo', 'Male', 'AB', '1981-10-28', '0710 1643 7952', 'Dk. HOS. Cjokroaminoto (Pasirkaliki) No. 219, Kendari 47740, Riau', '2025-10-20 03:03:30', '2025-10-20 03:03:30'),
+(35, 'PTN-2025P0000035', 'Gasti Pertiwi', 'Male', 'B', '1984-02-20', '(+62) 841 7287 1003', 'Kpg. Kalimalang No. 749, Pasuruan 72709, Bali', '2025-10-20 03:03:30', '2025-10-20 03:03:30'),
+(36, 'PTN-2025P0000036', 'Makara Tarihoran S.IP', 'Female', 'B', '1972-04-06', '(+62) 965 0936 568', 'Jln. Rajawali Barat No. 816, Parepare 37113, Bali', '2025-10-20 03:03:30', '2025-10-20 03:03:30'),
+(37, 'PTN-2025P0000037', 'Bambang Samosir S.Kom', 'Female', 'O', '2021-09-19', '0357 8340 678', 'Kpg. Pasir Koja No. 394, Palangka Raya 36419, Kalbar', '2025-10-20 03:03:30', '2025-10-20 03:03:30'),
+(38, 'PTN-2025P0000038', 'Aris Hartana Rajasa', 'Female', 'O', '1974-09-01', '0555 9385 879', 'Psr. Pelajar Pejuang 45 No. 994, Sukabumi 27520, Maluku', '2025-10-20 03:03:30', '2025-10-20 03:03:30'),
+(39, 'PTN-2025P0000039', 'Ina Mulyani', 'Male', 'AB', '2016-05-08', '(+62) 925 4163 4564', 'Dk. Sugiono No. 700, Gunungsitoli 69450, Kalbar', '2025-10-20 03:03:30', '2025-10-20 03:03:30'),
+(40, 'PTN-2025P0000040', 'Aditya Empluk Wahyudin S.E.', 'Female', 'O', '2017-08-11', '0254 3859 867', 'Dk. K.H. Maskur No. 522, Mojokerto 39997, Sulbar', '2025-10-20 03:03:30', '2025-10-20 03:03:30'),
+(41, 'PTN-2025P0000041', 'Hardana Gunarto', 'Female', 'B', '1971-09-09', '(+62) 444 3567 5331', 'Jln. Cut Nyak Dien No. 437, Bengkulu 30420, Kalbar', '2025-10-20 03:03:30', '2025-10-20 03:03:30'),
+(42, 'PTN-2025P0000042', 'Genta Nuraini S.Psi', 'Male', 'A', '1982-06-06', '0289 4031 680', 'Jr. Dr. Junjunan No. 127, Tomohon 57693, Banten', '2025-10-20 03:03:30', '2025-10-20 03:03:30'),
+(43, 'PTN-2025P0000043', 'Zaenab Maryati', 'Female', 'O', '1990-06-25', '(+62) 353 7645 5737', 'Gg. Kalimalang No. 943, Surabaya 95029, Lampung', '2025-10-20 03:03:30', '2025-10-20 03:03:30'),
+(44, 'PTN-2025P0000044', 'Dina Anggraini', 'Male', 'B', '2021-03-26', '(+62) 931 1480 3322', 'Dk. Ters. Jakarta No. 494, Tasikmalaya 55015, NTB', '2025-10-20 03:03:30', '2025-10-20 03:03:30'),
+(45, 'PTN-2025P0000045', 'Sadina Handayani', 'Female', 'O', '2020-04-23', '0213 4489 7371', 'Ki. Gajah No. 437, Bekasi 79952, DIY', '2025-10-20 03:03:30', '2025-10-20 03:03:30'),
+(46, 'PTN-2025P0000046', 'Maida Yulianti', 'Male', 'B', '1972-08-20', '(+62) 369 4377 0645', 'Psr. Juanda No. 801, Bau-Bau 83932, Sumbar', '2025-10-20 03:03:30', '2025-10-20 03:03:30'),
+(47, 'PTN-2025P0000047', 'Kezia Eva Namaga', 'Female', 'AB', '1989-03-20', '(+62) 847 857 026', 'Jr. Gatot Subroto No. 531, Blitar 73914, Kalteng', '2025-10-20 03:03:30', '2025-10-20 03:03:30'),
+(48, 'PTN-2025P0000048', 'Gawati Handayani', 'Female', 'A', '1981-01-04', '0301 1316 2722', 'Jln. Basuki Rahmat  No. 873, Yogyakarta 32000, Aceh', '2025-10-20 03:03:30', '2025-10-20 03:03:30'),
+(49, 'PTN-2025P0000049', 'Praba Uwais', 'Male', 'AB', '1990-07-16', '(+62) 587 2952 0262', 'Ki. Sumpah Pemuda No. 163, Gunungsitoli 76928, DKI', '2025-10-20 03:03:30', '2025-10-20 03:03:30'),
+(50, 'PTN-2025P0000050', 'Rahmi Oktaviani S.Pd', 'Male', 'O', '1979-08-27', '(+62) 574 4508 1038', 'Ki. Panjaitan No. 642, Padang 40499, Babel', '2025-10-20 03:03:31', '2025-10-20 03:03:31'),
+(51, 'PTN-2025P0000051', 'Banawa Sinaga S.Ked', 'Male', 'A', '1986-04-28', '(+62) 605 3216 5355', 'Jln. Industri No. 938, Blitar 28859, Jatim', '2025-10-20 03:03:31', '2025-10-20 03:03:31'),
+(52, 'PTN-2025P0000052', 'Iriana Suryatmi', 'Male', 'A', '1987-06-02', '(+62) 500 4535 0979', 'Dk. Ki Hajar Dewantara No. 799, Ternate 84134, Jatim', '2025-10-20 03:03:31', '2025-10-20 03:03:31'),
+(53, 'PTN-2025P0000053', 'Uchita Oliva Winarsih', 'Female', 'O', '2012-07-04', '0437 1149 9699', 'Jln. Abang No. 573, Tidore Kepulauan 33168, Sulut', '2025-10-20 03:03:31', '2025-10-20 03:03:31'),
+(54, 'PTN-2025P0000054', 'Banawi Maryadi', 'Male', 'AB', '2013-10-29', '0816 5865 298', 'Gg. M.T. Haryono No. 818, Pekanbaru 45114, Kaltara', '2025-10-20 03:03:31', '2025-10-20 03:03:31'),
+(55, 'PTN-2025P0000055', 'Calista Farida S.E.', 'Female', 'AB', '1989-02-24', '(+62) 802 8519 681', 'Jr. Pasir Koja No. 559, Tual 88089, Riau', '2025-10-20 03:03:31', '2025-10-20 03:03:31'),
+(56, 'PTN-2025P0000056', 'Eluh Warji Saputra', 'Male', 'AB', '1995-05-05', '0843 0454 1427', 'Kpg. Jaksa No. 701, Banda Aceh 56589, Bengkulu', '2025-10-20 03:03:31', '2025-10-20 03:03:31'),
+(57, 'PTN-2025P0000057', 'Najwa Nuraini M.Kom.', 'Male', 'O', '2002-12-28', '(+62) 509 9578 6339', 'Jr. Ujung No. 444, Manado 87475, Sumbar', '2025-10-20 03:03:31', '2025-10-20 03:03:31'),
+(58, 'PTN-2025P0000058', 'Endah Pudjiastuti S.Farm', 'Male', 'O', '1983-03-09', '(+62) 317 4877 368', 'Psr. Abang No. 352, Probolinggo 72264, Kepri', '2025-10-20 03:03:31', '2025-10-20 03:03:31'),
+(59, 'PTN-2025P0000059', 'Ade Unjani Lestari', 'Male', 'A', '1970-06-15', '0217 5263 512', 'Jr. Diponegoro No. 884, Padangpanjang 44268, Sulsel', '2025-10-20 03:03:31', '2025-10-20 03:03:31'),
+(60, 'PTN-2025P0000060', 'Vera Hastuti', 'Male', 'O', '2019-08-09', '0682 2858 229', 'Ds. Achmad No. 995, Tanjungbalai 81479, DKI', '2025-10-20 03:03:31', '2025-10-20 03:03:31'),
+(61, 'PTN-2025P0000061', 'Ghani Mandala S.H.', 'Female', 'B', '2020-05-03', '(+62) 26 6269 439', 'Jr. R.E. Martadinata No. 786, Singkawang 94454, Sumbar', '2025-10-20 03:03:31', '2025-10-20 03:03:31'),
+(62, 'PTN-2025P0000062', 'Jamalia Winda Hartati', 'Female', 'O', '1983-03-16', '0318 7116 2220', 'Ki. Pahlawan No. 254, Jambi 69355, Gorontalo', '2025-10-20 03:03:31', '2025-10-20 03:03:31'),
+(63, 'PTN-2025P0000063', 'Ismail Asmianto Prabowo S.H.', 'Male', 'B', '2022-04-25', '(+62) 804 538 189', 'Gg. Ahmad Dahlan No. 138, Depok 58832, Riau', '2025-10-20 03:03:31', '2025-10-20 03:03:31'),
+(64, 'PTN-2025P0000064', 'Jasmani Pratama', 'Female', 'O', '1982-10-10', '0781 5513 0646', 'Dk. Sampangan No. 143, Solok 59111, Sulut', '2025-10-20 03:03:31', '2025-10-20 03:03:31'),
+(65, 'PTN-2025P0000065', 'Hasna Aryani', 'Female', 'A', '2017-06-19', '0599 3644 624', 'Ki. Lada No. 253, Cirebon 30940, Sulbar', '2025-10-20 03:03:31', '2025-10-20 03:03:31'),
+(66, 'PTN-2025P0000066', 'Eka Raisa Pudjiastuti', 'Female', 'AB', '2011-01-05', '(+62) 659 8303 905', 'Ki. Salam No. 351, Tomohon 56144, Kepri', '2025-10-20 03:03:32', '2025-10-20 03:03:32'),
+(67, 'PTN-2025P0000067', 'Raharja Widodo', 'Male', 'A', '1991-06-10', '0986 5875 063', 'Jln. Casablanca No. 878, Ternate 24509, Jateng', '2025-10-20 03:03:32', '2025-10-20 03:03:32'),
+(68, 'PTN-2025P0000068', 'Tantri Pertiwi', 'Male', 'A', '2020-09-19', '0251 9719 0766', 'Ds. Halim No. 520, Medan 41437, Kaltim', '2025-10-20 03:03:32', '2025-10-20 03:03:32'),
+(69, 'PTN-2025P0000069', 'Tirtayasa Marpaung', 'Male', 'AB', '1988-12-09', '(+62) 27 9557 977', 'Psr. Sugiyopranoto No. 294, Sawahlunto 38612, Kalbar', '2025-10-20 03:03:32', '2025-10-20 03:03:32'),
+(70, 'PTN-2025P0000070', 'Jaeman Murti Halim', 'Female', 'B', '2007-11-22', '0624 4377 436', 'Jr. Sukajadi No. 730, Samarinda 19623, Sumsel', '2025-10-20 03:03:32', '2025-10-20 03:03:32'),
+(71, 'PTN-2025P0000071', 'Nalar Mansur', 'Female', 'O', '1988-08-11', '0543 4332 6720', 'Jln. Baja Raya No. 555, Padangpanjang 12396, Riau', '2025-10-20 03:03:32', '2025-10-20 03:03:32'),
+(72, 'PTN-2025P0000072', 'Gandi Eman Nugroho', 'Female', 'AB', '1991-03-09', '0988 7039 625', 'Psr. Katamso No. 718, Tangerang 74979, Sumut', '2025-10-20 03:03:32', '2025-10-20 03:03:32'),
+(73, 'PTN-2025P0000073', 'Karta Hardiansyah', 'Male', 'A', '1970-04-27', '(+62) 904 3980 4661', 'Ds. Bacang No. 206, Mojokerto 73718, Kalbar', '2025-10-20 03:03:32', '2025-10-20 03:03:32'),
+(74, 'PTN-2025P0000074', 'Saadat Prasasta', 'Female', 'B', '1994-05-15', '026 1993 599', 'Gg. Bara Tambar No. 312, Payakumbuh 10160, Babel', '2025-10-20 03:03:32', '2025-10-20 03:03:32'),
+(75, 'PTN-2025P0000075', 'Garda Cecep Pratama', 'Female', 'A', '2023-06-30', '(+62) 996 6788 1674', 'Jln. PHH. Mustofa No. 746, Pekalongan 68872, Kalteng', '2025-10-20 03:03:32', '2025-10-20 03:03:32'),
+(76, 'PTN-2025P0000076', 'Maras Prasasta M.Ak', 'Female', 'O', '2004-03-05', '(+62) 899 142 021', 'Jln. Padma No. 999, Administrasi Jakarta Utara 76193, Kalteng', '2025-10-20 03:03:32', '2025-10-20 03:03:32'),
+(77, 'PTN-2025P0000077', 'Sari Endah Halimah', 'Female', 'AB', '2022-02-17', '(+62) 831 8480 389', 'Kpg. Cikutra Timur No. 983, Tarakan 86459, Sultra', '2025-10-20 03:03:32', '2025-10-20 03:03:32'),
+(78, 'PTN-2025P0000078', 'Opan Mandala', 'Male', 'O', '2000-04-24', '0661 9866 657', 'Kpg. Soekarno Hatta No. 635, Cirebon 37415, Jambi', '2025-10-20 03:03:32', '2025-10-20 03:03:32'),
+(79, 'PTN-2025P0000079', 'Purwadi Jayeng Simanjuntak', 'Female', 'O', '1981-11-08', '0973 9224 575', 'Psr. Ters. Pasir Koja No. 853, Denpasar 90456, Pabar', '2025-10-20 03:03:32', '2025-10-20 03:03:32'),
+(80, 'PTN-2025P0000080', 'Ismail Sihotang', 'Female', 'A', '2009-07-11', '(+62) 485 9530 849', 'Jln. Orang No. 130, Padangpanjang 44303, Sultra', '2025-10-20 03:03:32', '2025-10-20 03:03:32'),
+(81, 'PTN-2025P0000081', 'Rahman Cawisono Halim S.Pt', 'Female', 'A', '1989-05-09', '0379 5375 0370', 'Jr. Pattimura No. 15, Pangkal Pinang 91487, Kalbar', '2025-10-20 03:03:33', '2025-10-20 03:03:33'),
+(82, 'PTN-2025P0000082', 'Nasim Samosir', 'Male', 'B', '2006-11-11', '0506 3977 772', 'Gg. Sampangan No. 314, Tidore Kepulauan 47306, Banten', '2025-10-20 03:03:33', '2025-10-20 03:03:33'),
+(83, 'PTN-2025P0000083', 'Gangsa Ramadan', 'Male', 'O', '1981-02-14', '0307 6767 839', 'Ki. Thamrin No. 906, Pekalongan 79340, Kalteng', '2025-10-20 03:03:33', '2025-10-20 03:03:33'),
+(84, 'PTN-2025P0000084', 'Hesti Melani S.H.', 'Female', 'A', '2016-02-19', '(+62) 29 5172 6307', 'Jr. Kartini No. 589, Jambi 97151, Jateng', '2025-10-20 03:03:33', '2025-10-20 03:03:33'),
+(85, 'PTN-2025P0000085', 'Ian Hasim Lazuardi M.TI.', 'Female', 'B', '1982-07-08', '0859 4305 643', 'Jr. Warga No. 284, Gorontalo 94035, Malut', '2025-10-20 03:03:33', '2025-10-20 03:03:33'),
+(86, 'PTN-2025P0000086', 'Laras Purnawati', 'Female', 'AB', '2022-12-08', '0252 3983 2757', 'Gg. Jagakarsa No. 71, Kediri 22458, Gorontalo', '2025-10-20 03:03:33', '2025-10-20 03:03:33'),
+(87, 'PTN-2025P0000087', 'Gilang Nasrullah Ardianto', 'Male', 'AB', '2011-03-27', '(+62) 907 5940 861', 'Psr. Bakau No. 356, Madiun 70670, Kalsel', '2025-10-20 03:03:33', '2025-10-20 03:03:33'),
+(88, 'PTN-2025P0000088', 'Cahya Suwarno M.Kom.', 'Female', 'B', '2003-04-05', '(+62) 531 2033 8789', 'Psr. Abdul No. 29, Padang 13976, Pabar', '2025-10-20 03:03:33', '2025-10-20 03:03:33'),
+(89, 'PTN-2025P0000089', 'Emil Wasis Manullang M.TI.', 'Female', 'B', '1994-08-23', '(+62) 29 0070 7870', 'Ds. Yos Sudarso No. 843, Sabang 29430, Kalteng', '2025-10-20 03:03:33', '2025-10-20 03:03:33'),
+(90, 'PTN-2025P0000090', 'Lidya Namaga', 'Female', 'O', '2014-11-20', '0916 1108 964', 'Ki. Sunaryo No. 185, Lhokseumawe 93584, NTB', '2025-10-20 03:03:33', '2025-10-20 03:03:33'),
+(91, 'PTN-2025P0000091', 'Safina Widiastuti', 'Male', 'AB', '1994-05-02', '(+62) 542 3564 2415', 'Ds. Ketandan No. 902, Palembang 20999, Sulbar', '2025-10-20 03:03:33', '2025-10-20 03:03:33'),
+(92, 'PTN-2025P0000092', 'Gatot Pangestu M.Pd', 'Female', 'AB', '2005-08-06', '(+62) 778 2971 2322', 'Jr. W.R. Supratman No. 111, Tangerang Selatan 38031, Kaltara', '2025-10-20 03:03:33', '2025-10-20 03:03:33'),
+(93, 'PTN-2025P0000093', 'Iriana Rahmi Purnawati', 'Female', 'AB', '1986-12-09', '0866 4795 6163', 'Jln. Honggowongso No. 39, Pangkal Pinang 66800, Sulut', '2025-10-20 03:03:33', '2025-10-20 03:03:33'),
+(94, 'PTN-2025P0000094', 'Jais Waluyo S.Farm', 'Male', 'O', '1976-12-22', '023 8403 0643', 'Psr. Kebonjati No. 342, Bekasi 43190, Kalbar', '2025-10-20 03:03:33', '2025-10-20 03:03:33'),
+(95, 'PTN-2025P0000095', 'Talia Permata S.Sos', 'Female', 'A', '1990-10-07', '(+62) 672 6248 9583', 'Ki. Bakti No. 319, Dumai 84412, Maluku', '2025-10-20 03:03:33', '2025-10-20 03:03:33'),
+(96, 'PTN-2025P0000096', 'Kamila Riyanti', 'Male', 'AB', '1987-04-03', '024 2789 1250', 'Jr. Siliwangi No. 850, Administrasi Jakarta Utara 55593, DKI', '2025-10-20 03:03:33', '2025-10-20 03:03:33'),
+(97, 'PTN-2025P0000097', 'Carub Kusumo', 'Male', 'B', '2008-10-25', '0768 8239 145', 'Jln. Qrisdoren No. 563, Palangka Raya 24771, NTB', '2025-10-20 03:03:33', '2025-10-20 03:03:33'),
+(98, 'PTN-2025P0000098', 'Zaenab Ilsa Nurdiyanti S.I.Kom', 'Male', 'AB', '1983-09-06', '0856 1333 8735', 'Jr. Bahagia  No. 177, Kotamobagu 16130, Sulut', '2025-10-20 03:03:34', '2025-10-20 03:03:34'),
+(99, 'PTN-2025P0000099', 'Bagas Ramadan', 'Female', 'AB', '1977-11-03', '(+62) 295 8879 2921', 'Ds. Raya Ujungberung No. 858, Bima 92518, Kaltim', '2025-10-20 03:03:34', '2025-10-20 03:03:34'),
+(100, 'PTN-2025P0000100', 'Drajat Zulkarnain', 'Male', 'O', '1982-04-03', '028 0229 2705', 'Ki. Basmol Raya No. 718, Sawahlunto 17617, Kaltara', '2025-10-20 03:03:34', '2025-10-20 03:03:34');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `patient_diagnose_bills`
+--
+
+CREATE TABLE `patient_diagnose_bills` (
+  `id` bigint UNSIGNED NOT NULL,
+  `total_patient_bill_id` bigint UNSIGNED NOT NULL,
+  `item_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `diagnose_id` bigint UNSIGNED NOT NULL,
+  `amount` decimal(12,2) NOT NULL DEFAULT '0.00',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `patient_diagnose_bills`
+--
+
+INSERT INTO `patient_diagnose_bills` (`id`, `total_patient_bill_id`, `item_name`, `diagnose_id`, `amount`, `created_at`, `updated_at`) VALUES
+(11, 18, 'admin', 59, 50000.00, '2025-12-15 04:28:47', '2025-12-15 04:31:05');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `patient_health_data`
+--
+
+CREATE TABLE `patient_health_data` (
+  `id` bigint UNSIGNED NOT NULL,
+  `patient_id` bigint UNSIGNED NOT NULL,
+  `systolic_bp` int NOT NULL,
+  `diastolic_bp` int NOT NULL,
+  `heart_rate` int NOT NULL,
+  `oxygen_saturation` int NOT NULL,
+  `temperature` int NOT NULL,
+  `height` int NOT NULL,
+  `weight` int NOT NULL,
+  `complaints` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `patient_health_data`
+--
+
+INSERT INTO `patient_health_data` (`id`, `patient_id`, `systolic_bp`, `diastolic_bp`, `heart_rate`, `oxygen_saturation`, `temperature`, `height`, `weight`, `complaints`, `created_at`, `updated_at`) VALUES
+(1, 59, 120, 90, 90, 90, 36, 155, 55, 'stomach ache', '2025-10-24 07:00:30', '2025-10-24 07:00:30'),
+(2, 40, 135, 95, 95, 95, 36, 170, 65, 'sneezing and coughing', '2025-10-24 07:26:57', '2025-10-24 07:26:57'),
+(4, 16, 120, 90, 87, 97, 38, 165, 55, 'fever with pain throughout the body', '2025-10-24 08:10:32', '2025-10-26 05:24:59'),
+(5, 16, 120, 90, 87, 97, 38, 165, 55, 'fever with pain throughout the body', '2025-10-24 08:12:51', '2025-10-26 05:24:59'),
+(6, 16, 120, 90, 87, 97, 38, 165, 55, 'fever with pain throughout the body', '2025-10-24 08:34:21', '2025-10-26 05:24:59'),
+(7, 16, 120, 90, 87, 97, 38, 165, 55, 'fever with pain throughout the body', '2025-10-24 08:42:16', '2025-10-26 05:24:59'),
+(15, 16, 120, 90, 98, 90, 38, 160, 55, 'Fever with ache over all body', '2025-10-28 05:05:27', '2025-10-28 05:05:27'),
+(21, 59, 120, 90, 90, 95, 36, 155, 50, 'example complaints 2', '2025-12-08 08:53:04', '2025-12-08 08:53:04');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `patient_prescription_bills`
+--
+
+CREATE TABLE `patient_prescription_bills` (
+  `id` bigint UNSIGNED NOT NULL,
+  `total_patient_bill_id` bigint UNSIGNED NOT NULL,
+  `item_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `prescription_id` bigint UNSIGNED NOT NULL,
+  `amount` decimal(12,2) NOT NULL DEFAULT '0.00',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `patient_prescription_bills`
+--
+
+INSERT INTO `patient_prescription_bills` (`id`, `total_patient_bill_id`, `item_name`, `prescription_id`, `amount`, `created_at`, `updated_at`) VALUES
+(13, 18, 'example 3', 67, 100000.00, '2025-12-15 04:28:47', '2025-12-20 02:49:19');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `patient_registrations`
+--
+
+CREATE TABLE `patient_registrations` (
+  `id` bigint UNSIGNED NOT NULL,
+  `patient_id` bigint UNSIGNED NOT NULL,
+  `doctor_id` bigint UNSIGNED NOT NULL,
+  `queue_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('done','on_process','cancelled') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'on_process',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `patient_registrations`
+--
+
+INSERT INTO `patient_registrations` (`id`, `patient_id`, `doctor_id`, `queue_number`, `status`, `created_at`, `updated_at`) VALUES
+(1, 16, 3, 'DR-admN-Q001', 'on_process', '2025-10-28 05:05:27', '2025-12-07 06:03:37');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `permissions`
+--
+
+CREATE TABLE `permissions` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `permissions`
+--
+
+INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+(1, 'user.view', 'web', '2025-10-20 03:03:26', '2025-10-20 03:03:26'),
+(2, 'user.create', 'web', '2025-10-20 03:03:26', '2025-10-20 03:03:26'),
+(3, 'user.edit', 'web', '2025-10-20 03:03:26', '2025-10-20 03:03:26'),
+(4, 'user.delete', 'web', '2025-10-20 03:03:27', '2025-10-20 03:03:27'),
+(5, 'role.view', 'web', '2025-10-20 03:03:27', '2025-10-20 03:03:27'),
+(6, 'role.create', 'web', '2025-10-20 03:03:27', '2025-10-20 03:03:27'),
+(7, 'role.edit', 'web', '2025-10-20 03:03:27', '2025-10-20 03:03:27'),
+(8, 'role.delete', 'web', '2025-10-20 03:03:27', '2025-10-20 03:03:27'),
+(10, 'patientData.view', 'web', '2025-10-20 04:20:27', '2025-10-20 04:20:43'),
+(11, 'patientData.create', 'web', '2025-10-20 04:37:50', '2025-10-20 04:37:50'),
+(12, 'patientData.edit', 'web', '2025-10-20 04:38:01', '2025-10-20 04:38:01'),
+(13, 'patientData.delete', 'web', '2025-10-20 04:38:14', '2025-10-20 04:38:14'),
+(14, 'permission.view', 'web', '2025-10-20 05:03:23', '2025-10-20 05:03:23'),
+(15, 'permission.create', 'web', '2025-10-20 05:03:40', '2025-10-20 05:03:40'),
+(16, 'permission.edit', 'web', '2025-10-20 05:03:49', '2025-10-20 05:03:49'),
+(17, 'permission.delete', 'web', '2025-10-20 05:04:00', '2025-10-20 05:04:00'),
+(18, 'healthData.view', 'web', '2025-10-25 09:49:21', '2025-10-25 09:49:21'),
+(19, 'healthData.create', 'web', '2025-10-25 09:49:35', '2025-10-25 09:49:35'),
+(20, 'healthData.edit', 'web', '2025-10-25 09:50:00', '2025-10-25 09:50:00'),
+(21, 'healthData.delete', 'web', '2025-10-25 09:50:17', '2025-10-25 09:50:17'),
+(22, 'patientRegist.view', 'web', '2025-10-25 09:50:33', '2025-10-25 09:50:33'),
+(23, 'patientRegist.create', 'web', '2025-10-25 09:51:03', '2025-10-25 09:51:03'),
+(24, 'patientRegist.edit', 'web', '2025-10-25 09:51:37', '2025-10-25 09:51:37'),
+(25, 'patientRegist.delete', 'web', '2025-10-25 09:52:01', '2025-10-25 09:52:01'),
+(26, 'billData.view', 'web', '2025-12-18 04:47:15', '2025-12-18 04:47:15'),
+(27, 'billData.create', 'web', '2025-12-18 04:47:27', '2025-12-18 04:47:27'),
+(28, 'billData.edit', 'web', '2025-12-18 04:47:39', '2025-12-18 04:47:39'),
+(29, 'billData.delete', 'web', '2025-12-18 04:47:49', '2025-12-18 04:47:49'),
+(30, 'diagnoseData.view', 'web', '2025-12-18 04:49:01', '2025-12-18 04:49:01'),
+(31, 'diagnoseData.create', 'web', '2025-12-18 04:49:14', '2025-12-18 04:49:14'),
+(32, 'diagnoseData.edit', 'web', '2025-12-18 04:49:26', '2025-12-18 04:49:26'),
+(33, 'diagnoseData.delete', 'web', '2025-12-18 04:49:39', '2025-12-18 04:49:39'),
+(34, 'financeData.view', 'web', '2025-12-18 04:50:02', '2025-12-18 04:50:02'),
+(35, 'financeData.download', 'web', '2025-12-18 04:50:53', '2025-12-18 04:50:53'),
+(36, 'inventories.view', 'web', '2025-12-18 04:51:12', '2025-12-18 04:51:12'),
+(37, 'inventories.edit', 'web', '2025-12-18 04:51:21', '2025-12-18 04:51:21'),
+(38, 'inventories.create', 'web', '2025-12-18 04:52:05', '2025-12-18 04:52:05'),
+(39, 'inventories.delete', 'web', '2025-12-18 04:52:17', '2025-12-18 04:52:17'),
+(40, 'marketingData.view', 'web', '2025-12-18 04:52:46', '2025-12-18 04:52:46'),
+(41, 'marketingData.create', 'web', '2025-12-18 04:52:58', '2025-12-18 04:52:58'),
+(42, 'marketingData.edit', 'web', '2025-12-18 04:53:13', '2025-12-18 04:53:13'),
+(43, 'medicalWasteData.view', 'web', '2025-12-18 04:54:12', '2025-12-18 04:54:12'),
+(44, 'medicalWasteData.create', 'web', '2025-12-18 04:54:23', '2025-12-18 04:54:23'),
+(45, 'medicalWasteData.edit', 'web', '2025-12-18 04:54:34', '2025-12-18 04:54:34'),
+(46, 'medicalWasteData.delete', 'web', '2025-12-18 04:54:42', '2025-12-18 04:54:42'),
+(47, 'medicineData.view', 'web', '2025-12-18 04:54:59', '2025-12-18 04:54:59'),
+(48, 'medicineData.create', 'web', '2025-12-18 04:55:16', '2025-12-18 04:55:16'),
+(49, 'medicineData.edit', 'web', '2025-12-18 04:55:25', '2025-12-18 04:55:25'),
+(50, 'medicineData.delete', 'web', '2025-12-18 04:55:36', '2025-12-18 04:55:36'),
+(51, 'patientBillData.view', 'web', '2025-12-18 04:56:11', '2025-12-18 04:56:11'),
+(52, 'patientBillData.create', 'web', '2025-12-18 04:56:20', '2025-12-18 04:56:20'),
+(53, 'patientBillData.edit', 'web', '2025-12-18 04:56:30', '2025-12-18 04:56:30'),
+(54, 'patientBillData.delete', 'web', '2025-12-18 04:56:38', '2025-12-18 04:56:38'),
+(55, 'prescriptionData.view', 'web', '2025-12-18 04:57:13', '2025-12-18 04:57:13'),
+(56, 'prescriptionData.create', 'web', '2025-12-18 04:57:26', '2025-12-18 04:57:26'),
+(57, 'prescriptionData.edit', 'web', '2025-12-18 04:57:34', '2025-12-18 04:57:34'),
+(58, 'prescriptionData.delete', 'web', '2025-12-18 04:57:41', '2025-12-18 04:57:41'),
+(59, 'purchaseDeliveryStatus.view', 'web', '2025-12-18 04:58:29', '2025-12-18 04:58:29'),
+(61, 'purchaseDeliveryStatus.edit', 'web', '2025-12-18 04:58:45', '2025-12-18 04:58:45'),
+(62, 'purchaseDeliveryStatus.delete', 'web', '2025-12-18 04:58:54', '2025-12-18 04:58:54'),
+(63, 'purchaseData.view', 'web', '2025-12-18 04:59:56', '2025-12-18 04:59:56'),
+(64, 'purchaseData.create', 'web', '2025-12-18 05:00:10', '2025-12-18 05:00:10'),
+(65, 'purchaseData.edit', 'web', '2025-12-18 05:00:18', '2025-12-18 05:00:18'),
+(66, 'purchaseData.delete', 'web', '2025-12-18 05:00:27', '2025-12-18 05:00:27'),
+(67, 'requestItem.view', 'web', '2025-12-18 05:01:22', '2025-12-18 05:01:22'),
+(68, 'requestItem.create', 'web', '2025-12-18 05:01:45', '2025-12-18 05:01:45'),
+(69, 'requestItem.edit', 'web', '2025-12-18 05:01:53', '2025-12-18 05:01:53'),
+(70, 'requestItem.delete', 'web', '2025-12-18 05:01:59', '2025-12-18 05:02:14'),
+(71, 'staffSalaryData.view', 'web', '2025-12-18 05:03:30', '2025-12-18 05:03:30'),
+(72, 'staffSalaryData.create', 'web', '2025-12-18 05:03:38', '2025-12-18 05:03:38'),
+(73, 'staffSalaryData.edit', 'web', '2025-12-18 05:03:45', '2025-12-18 05:03:45'),
+(74, 'staffSalaryData.delete', 'web', '2025-12-18 05:03:54', '2025-12-18 05:03:54'),
+(75, 'staffPaidData.view', 'web', '2025-12-18 05:04:43', '2025-12-18 05:04:43'),
+(76, 'staffPaidData.create', 'web', '2025-12-18 05:04:51', '2025-12-18 05:04:51'),
+(77, 'staffPaidData.edit', 'web', '2025-12-18 05:04:57', '2025-12-18 05:04:57'),
+(78, 'staffPaidData.delete', 'web', '2025-12-18 05:05:06', '2025-12-18 05:05:06'),
+(79, 'supplierData.view', 'web', '2025-12-18 05:05:34', '2025-12-18 05:05:34'),
+(80, 'supplierData.edit', 'web', '2025-12-18 05:05:41', '2025-12-18 05:05:41'),
+(81, 'supplierData.create', 'web', '2025-12-18 05:05:50', '2025-12-18 05:05:50'),
+(82, 'supplierData.delete', 'web', '2025-12-18 05:05:57', '2025-12-18 05:05:57'),
+(83, 'utilityCost.view', 'web', '2025-12-18 05:06:24', '2025-12-18 05:06:24'),
+(84, 'utilityCost.create', 'web', '2025-12-18 05:06:38', '2025-12-18 05:06:38'),
+(85, 'utilityCost.edit', 'web', '2025-12-18 05:07:00', '2025-12-18 05:07:00'),
+(86, 'utilityCost.delete', 'web', '2025-12-18 05:07:06', '2025-12-18 05:07:06'),
+(87, 'marketingData.delete', 'web', '2025-12-18 05:10:18', '2025-12-18 05:10:18'),
+(88, 'utilitiesData.view', 'web', '2025-12-18 05:12:28', '2025-12-18 05:12:28'),
+(89, 'utilitiesData.create', 'web', '2025-12-18 05:12:43', '2025-12-18 05:12:43'),
+(90, 'utilitiesData.edit', 'web', '2025-12-18 05:12:54', '2025-12-18 05:12:54'),
+(91, 'utilitiesData.delete', 'web', '2025-12-18 05:13:01', '2025-12-18 05:13:01'),
+(92, 'purchaseStatus.view', 'web', '2025-12-18 05:16:11', '2025-12-18 05:16:11'),
+(93, 'purchaseStatus.edit', 'web', '2025-12-18 05:16:39', '2025-12-18 05:16:39');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `prescriptions`
+--
+
+CREATE TABLE `prescriptions` (
+  `id` bigint UNSIGNED NOT NULL,
+  `prescription_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `medicines_id` bigint UNSIGNED NOT NULL,
+  `diagnosis_id` bigint UNSIGNED NOT NULL,
+  `dosage` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `quantity` int NOT NULL,
+  `status` enum('done','on_process','recalled') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'on_process',
+  `instructions` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `prescriptions`
+--
+
+INSERT INTO `prescriptions` (`id`, `prescription_code`, `medicines_id`, `diagnosis_id`, `dosage`, `quantity`, `status`, `instructions`, `created_at`, `updated_at`) VALUES
+(67, 'PR-P316001', 7, 59, '35ml in once injection', 1, 'done', 'Inject 35ml when needed, use only once a day', '2025-12-15 04:28:47', '2025-12-16 05:37:04');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `purchase_delivery_statuses`
+--
+
+CREATE TABLE `purchase_delivery_statuses` (
+  `id` bigint UNSIGNED NOT NULL,
+  `request_item_id` bigint UNSIGNED NOT NULL,
+  `status` enum('pending','on_delivery','delivered','rejected','returned') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
+  `delivery_service` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tracking_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `estimated_delivery_time_in_days` int UNSIGNED DEFAULT NULL,
+  `rejected_reason` text COLLATE utf8mb4_unicode_ci,
+  `returned_reason` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `purchase_delivery_statuses`
+--
+
+INSERT INTO `purchase_delivery_statuses` (`id`, `request_item_id`, `status`, `delivery_service`, `tracking_number`, `estimated_delivery_time_in_days`, `rejected_reason`, `returned_reason`, `created_at`, `updated_at`) VALUES
+(1, 1, 'pending', NULL, NULL, NULL, NULL, NULL, '2025-11-29 06:28:16', '2025-11-29 06:28:16'),
+(2, 2, 'pending', NULL, NULL, NULL, NULL, NULL, '2025-11-29 06:28:16', '2025-11-29 06:28:16'),
+(3, 3, 'delivered', NULL, NULL, NULL, NULL, NULL, '2025-11-29 06:29:16', '2025-12-04 04:38:08');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `purchase_requests`
+--
+
+CREATE TABLE `purchase_requests` (
+  `id` bigint UNSIGNED NOT NULL,
+  `purchase_request_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `status` enum('pending','approved','rejected') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
+  `required_by_date` date NOT NULL,
+  `bill_id` bigint UNSIGNED DEFAULT NULL,
+  `total_amount` decimal(15,2) NOT NULL DEFAULT '0.00',
+  `notes` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `purchase_requests`
+--
+
+INSERT INTO `purchase_requests` (`id`, `purchase_request_id`, `user_id`, `status`, `required_by_date`, `bill_id`, `total_amount`, `notes`, `created_at`, `updated_at`) VALUES
+(1, 'PR-admN-0000001', 3, 'pending', '2026-01-15', 1, 4000000.00, 'example notes from purchase request 1', '2025-11-29 06:28:16', '2025-11-29 06:28:16'),
+(2, 'PR-admN-0000002', 3, 'approved', '2026-01-12', 1, 425000.00, 'example notes from purchase request 2', '2025-11-29 06:29:16', '2025-12-04 04:37:45');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `request_items`
+--
+
+CREATE TABLE `request_items` (
+  `id` bigint UNSIGNED NOT NULL,
+  `request_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `purchase_request_id` bigint UNSIGNED NOT NULL,
+  `item_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `supplier_id` bigint UNSIGNED NOT NULL,
+  `type` enum('medicine','equipment') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `reason` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `quantity` int UNSIGNED NOT NULL,
+  `price_per_unit` decimal(12,2) NOT NULL DEFAULT '0.00',
+  `total_price` decimal(12,2) NOT NULL DEFAULT '0.00',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `request_items`
+--
+
+INSERT INTO `request_items` (`id`, `request_number`, `purchase_request_id`, `item_name`, `supplier_id`, `type`, `reason`, `quantity`, `price_per_unit`, `total_price`, `created_at`, `updated_at`) VALUES
+(1, 'RI-exa131-0000001', 1, 'example 1', 1, 'medicine', 'example reason 1', 1000, 1500.00, 1500000.00, '2025-11-29 06:28:16', '2025-11-29 06:28:16'),
+(2, 'RI-exa231-0000002', 1, 'example 2', 1, 'medicine', 'example reason 2', 1000, 2500.00, 2500000.00, '2025-11-29 06:28:16', '2025-11-29 06:28:16'),
+(3, 'RI-exa331-0000003', 2, 'example 3', 1, 'medicine', 'example reason 3', 5, 85000.00, 425000.00, '2025-11-29 06:29:16', '2025-12-02 05:51:47');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+(1, 'Super Admin', 'web', '2025-10-20 03:09:03', '2025-10-20 03:09:03'),
+(2, 'Management', 'web', '2025-10-20 04:45:03', '2025-10-20 05:12:20'),
+(3, 'Nurse', 'web', '2025-10-20 05:15:07', '2025-10-20 05:15:07'),
+(4, 'Doctor', 'web', '2025-10-20 05:41:06', '2025-10-20 05:41:06');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `role_has_permissions`
+--
+
+CREATE TABLE `role_has_permissions` (
+  `permission_id` bigint UNSIGNED NOT NULL,
+  `role_id` bigint UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `role_has_permissions`
+--
+
+INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 1),
+(5, 1),
+(6, 1),
+(7, 1),
+(8, 1),
+(10, 1),
+(11, 1),
+(12, 1),
+(13, 1),
+(14, 1),
+(15, 1),
+(16, 1),
+(17, 1),
+(18, 1),
+(19, 1),
+(20, 1),
+(21, 1),
+(22, 1),
+(23, 1),
+(24, 1),
+(25, 1),
+(26, 1),
+(27, 1),
+(28, 1),
+(29, 1),
+(30, 1),
+(31, 1),
+(32, 1),
+(33, 1),
+(34, 1),
+(35, 1),
+(36, 1),
+(37, 1),
+(38, 1),
+(39, 1),
+(40, 1),
+(41, 1),
+(42, 1),
+(43, 1),
+(44, 1),
+(45, 1),
+(46, 1),
+(47, 1),
+(48, 1),
+(49, 1),
+(50, 1),
+(51, 1),
+(52, 1),
+(53, 1),
+(54, 1),
+(55, 1),
+(56, 1),
+(57, 1),
+(58, 1),
+(59, 1),
+(61, 1),
+(62, 1),
+(63, 1),
+(64, 1),
+(65, 1),
+(66, 1),
+(67, 1),
+(68, 1),
+(69, 1),
+(70, 1),
+(71, 1),
+(72, 1),
+(73, 1),
+(74, 1),
+(75, 1),
+(76, 1),
+(77, 1),
+(78, 1),
+(79, 1),
+(80, 1),
+(81, 1),
+(82, 1),
+(83, 1),
+(84, 1),
+(85, 1),
+(86, 1),
+(87, 1),
+(88, 1),
+(89, 1),
+(90, 1),
+(91, 1),
+(92, 1),
+(93, 1),
+(1, 2),
+(2, 2),
+(3, 2),
+(5, 2),
+(11, 2),
+(14, 2),
+(26, 2),
+(27, 2),
+(28, 2),
+(29, 2),
+(36, 2),
+(37, 2),
+(38, 2),
+(39, 2),
+(40, 2),
+(41, 2),
+(42, 2),
+(43, 2),
+(44, 2),
+(45, 2),
+(46, 2),
+(51, 2),
+(52, 2),
+(53, 2),
+(54, 2),
+(59, 2),
+(61, 2),
+(62, 2),
+(63, 2),
+(64, 2),
+(65, 2),
+(66, 2),
+(67, 2),
+(68, 2),
+(69, 2),
+(70, 2),
+(71, 2),
+(72, 2),
+(73, 2),
+(74, 2),
+(75, 2),
+(76, 2),
+(77, 2),
+(78, 2),
+(79, 2),
+(80, 2),
+(81, 2),
+(82, 2),
+(83, 2),
+(84, 2),
+(85, 2),
+(86, 2),
+(87, 2),
+(88, 2),
+(89, 2),
+(90, 2),
+(91, 2),
+(92, 2),
+(93, 2),
+(10, 3),
+(11, 3),
+(12, 3),
+(13, 3),
+(22, 3),
+(23, 3),
+(24, 3),
+(25, 3),
+(30, 3),
+(55, 3),
+(10, 4),
+(11, 4),
+(12, 4),
+(13, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `sessions`
+--
+
+CREATE TABLE `sessions` (
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint UNSIGNED DEFAULT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text COLLATE utf8mb4_unicode_ci,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_activity` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `staff_salaries`
+--
+
+CREATE TABLE `staff_salaries` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `position` enum('director','manager','head of medical staff','doctor','nurse','pharmacist','medical record staff','head of administration and support staff','admin','cleaning staff','security staff') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `staff_id` bigint UNSIGNED DEFAULT NULL,
+  `monthly_salary` decimal(15,2) NOT NULL DEFAULT '0.00',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `staff_salaries`
+--
+
+INSERT INTO `staff_salaries` (`id`, `name`, `position`, `staff_id`, `monthly_salary`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', 'director', 3, 7500000.00, '2025-11-29 06:29:40', '2025-11-29 06:29:40');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `staff_salary_costs`
+--
+
+CREATE TABLE `staff_salary_costs` (
+  `id` bigint UNSIGNED NOT NULL,
+  `staff_salary_id` bigint UNSIGNED NOT NULL,
+  `total_salary_cost_id` bigint UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `staff_salary_costs`
+--
+
+INSERT INTO `staff_salary_costs` (`id`, `staff_salary_id`, `total_salary_cost_id`, `created_at`, `updated_at`) VALUES
+(2, 1, 2, '2025-11-29 07:01:09', '2025-11-29 07:01:09');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `suppliers`
+--
+
+CREATE TABLE `suppliers` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `contact_person` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `suppliers`
+--
+
+INSERT INTO `suppliers` (`id`, `name`, `contact_person`, `email`, `phone_number`, `address`, `created_at`, `updated_at`) VALUES
+(1, 'PT Kimia Farma', 'Sutikno', 'business@kftd.co.id', '081237596345', 'Jl. Veteran No. 9, Jakarta 10110', '2025-11-04 06:24:34', '2025-11-04 06:24:34');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `total_patient_bills`
+--
+
+CREATE TABLE `total_patient_bills` (
+  `id` bigint UNSIGNED NOT NULL,
+  `bill_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `patient_id` bigint UNSIGNED NOT NULL,
+  `administrative_fee` decimal(12,2) NOT NULL DEFAULT '0.00',
+  `total_cost` decimal(12,2) NOT NULL DEFAULT '0.00',
+  `status` enum('paid','unpaid','cancelled') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'unpaid',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `total_patient_bills`
+--
+
+INSERT INTO `total_patient_bills` (`id`, `bill_code`, `patient_id`, `administrative_fee`, `total_cost`, `status`, `created_at`, `updated_at`) VALUES
+(18, 'BILL-AmaI-0000001', 16, 10000.00, 160000.00, 'paid', '2025-12-15 04:28:47', '2025-12-16 04:20:12');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `total_staff_salary_costs`
+--
+
+CREATE TABLE `total_staff_salary_costs` (
+  `id` bigint UNSIGNED NOT NULL,
+  `employee_payroll_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `total_amount` decimal(15,2) NOT NULL DEFAULT '0.00',
+  `bill_id` bigint UNSIGNED DEFAULT NULL,
+  `notes` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `total_staff_salary_costs`
+--
+
+INSERT INTO `total_staff_salary_costs` (`id`, `employee_payroll_id`, `total_amount`, `bill_id`, `notes`, `created_at`, `updated_at`) VALUES
+(2, 'STAFFPAY0000001 - 29112025', 7500000.00, 1, 'example notes from staff salary 1', '2025-11-29 07:01:09', '2025-11-29 07:01:09');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `total_utility_costs`
+--
+
+CREATE TABLE `total_utility_costs` (
+  `id` bigint UNSIGNED NOT NULL,
+  `utility_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `total_amount` decimal(15,2) NOT NULL DEFAULT '0.00',
+  `bill_id` bigint UNSIGNED DEFAULT NULL,
+  `notes` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `total_utility_costs`
+--
+
+INSERT INTO `total_utility_costs` (`id`, `utility_id`, `total_amount`, `bill_id`, `notes`, `created_at`, `updated_at`) VALUES
+(1, 'UTILITY0000001 - 01122025', 350000.00, 1, 'example notes from utility cost 1', '2025-12-01 04:31:55', '2025-12-02 06:09:43');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `users`
+--
+
+CREATE TABLE `users` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `photo_url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'https://storage.googleapis.com/portfolio_clinic-app/user.png',
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `two_factor_secret` text COLLATE utf8mb4_unicode_ci,
+  `two_factor_recovery_codes` text COLLATE utf8mb4_unicode_ci,
+  `two_factor_confirmed_at` timestamp NULL DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `photo_url`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `created_at`, `updated_at`) VALUES
+(2, 'admin 2', 'admin_2@example.com', 'https://storage.googleapis.com/portfolio_clinic-app/user.png', '$2y$12$16OFQM9CYm6ap5t/ZxSi4OvGdC7fekTxnVor9pTSLs/dWKcaRKKeu', NULL, NULL, NULL, NULL, '2025-10-20 03:11:20', '2025-10-20 03:11:20'),
+(3, 'admin', 'admin@example.com', 'https://storage.googleapis.com/portfolio_clinic-app/user.png', '$2y$12$LQBUlqiNaB9wciVrZM1js.HKrhnm14u6jmhW6joqEdBw0pBinQwYq', 'eyJpdiI6Ikd0YSs5dGlQZGgza1N3NERxOTJuRHc9PSIsInZhbHVlIjoiTVkwVmdLOGVOUWFjZHd2NWVITy9GTnVJWWlnVjRERTl5MDVxbmNjeXY3UT0iLCJtYWMiOiJiZmNlN2QzOWE5ODg1OTZmYzY1ODUyZDUxMzUxMWEzNjA0M2U0MGFhODRhM2M5MzBmNGY1NDY1NTlhZmJmMGI3IiwidGFnIjoiIn0=', 'eyJpdiI6IkhUNEJvcVpuVlBUZUNuU3ZxNmlBYWc9PSIsInZhbHVlIjoiVlZBOWt3ZDF4d1RYY3FGRGw5VTRtZ2lXVkl4TUtneFRVOVBqWWNsb1VpVWMvYkhUQmVIWDd0cWU3Tmc1bW4vNk15RTNRYVovejBvRWgrWkZqSjhEWVlzLzZxbWhWQ3RDbkNUZ0thMStHNWVtU1pLRmR5UkozNG9Rcy9rbkRId3BxOFdwU21ZNk1yYkhFcUFhVGsxQnVGa3dUV21CdHlVbVoxNUxhZXVqN1BOOGpuL2hwYkgwQlF5QU1FYURycjJ5cVhtcW1UUEU2azdWZnpsTXBIR1hyTHBzRFFlc1JYTURORDc0aGU3OE1KMlVOT082QjVZRyt0d280ZGhkUldLNGtTT0JoaEJBNlJ1a0V4Z243MTU3cnc9PSIsIm1hYyI6IjNkNTY1ODM5NGYzNTY1NDc3OTQ4ZDM4MjIwZDA2NTU3OGExMGQ3ZGY5NzQzMDYwZTc4MDUzZWQyYTdlMDczYzYiLCJ0YWciOiIifQ==', '2025-12-26 10:39:36', 'hmOgoDtu2QUx9aLL9LVvDEAYjcd2EYCaFBvcmSzF8lO3FvcZjS3PTko49tw2', '2025-10-20 03:13:23', '2025-12-26 10:39:36'),
+(4, 'management', 'management@example.com', 'https://storage.googleapis.com/portfolio_clinic-app/user.png', '$2y$12$NO6d7xDDSbEh8jtZd5dYjO7gevo9f9pOd6l2CW1HZ8hYXVYp7xN2O', NULL, NULL, NULL, NULL, '2025-10-20 05:12:55', '2025-10-20 05:12:55'),
+(5, 'nurse', 'nurse@example.com', 'https://storage.googleapis.com/portfolio_clinic-app/user.png', '$2y$12$es9aXhVR5dFvnTxy.0SfjuG9ppx2/lzR3WRySf2PnREdzfk01jeia', NULL, NULL, NULL, NULL, '2025-10-20 05:15:36', '2025-10-20 05:15:36'),
+(6, 'doctor', 'doctor@example.com', 'https://storage.googleapis.com/portfolio_clinic-app/user.png', '$2y$12$Hy0DGrq.UuU5BFRWKABoOejbiw4sQbkUT23A83OAejhaSjX.Cvcle', NULL, NULL, NULL, NULL, '2025-10-20 05:41:32', '2025-10-20 05:41:32');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `utility_costs`
+--
+
+CREATE TABLE `utility_costs` (
+  `id` bigint UNSIGNED NOT NULL,
+  `total_utility_cost_id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `amount` decimal(15,2) NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `utility_costs`
+--
+
+INSERT INTO `utility_costs` (`id`, `total_utility_cost_id`, `name`, `amount`, `description`, `created_at`, `updated_at`) VALUES
+(1, 1, 'example 1', 250000.00, 'example description 1', '2025-12-01 04:31:55', '2025-12-01 05:45:04'),
+(2, 1, 'example 2', 100000.00, 'example description 2', '2025-12-01 04:31:55', '2025-12-01 05:45:04');
+
+--
+-- Indeks untuk tabel yang dibuang
+--
+
+--
+-- Indeks untuk tabel `bills`
+--
+ALTER TABLE `bills`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `bills_bill_number_unique` (`bill_number`);
+
+--
+-- Indeks untuk tabel `cache`
+--
+ALTER TABLE `cache`
+  ADD PRIMARY KEY (`key`);
+
+--
+-- Indeks untuk tabel `cache_locks`
+--
+ALTER TABLE `cache_locks`
+  ADD PRIMARY KEY (`key`);
+
+--
+-- Indeks untuk tabel `diagnoses`
+--
+ALTER TABLE `diagnoses`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `diagnoses_diagnose_code_unique` (`diagnose_code`),
+  ADD KEY `diagnoses_patient_id_foreign` (`patient_id`),
+  ADD KEY `diagnoses_doctor_id_foreign` (`doctor_id`);
+
+--
+-- Indeks untuk tabel `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indeks untuk tabel `inventories`
+--
+ALTER TABLE `inventories`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `supplier_id` (`supplier_id`);
+
+--
+-- Indeks untuk tabel `jobs`
+--
+ALTER TABLE `jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `jobs_queue_index` (`queue`);
+
+--
+-- Indeks untuk tabel `job_batches`
+--
+ALTER TABLE `job_batches`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `marketing_costs`
+--
+ALTER TABLE `marketing_costs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `marketing_costs_marketing_id_unique` (`marketing_id`),
+  ADD KEY `bill_id_marketing` (`bill_id`);
+
+--
+-- Indeks untuk tabel `medical_waste_management_costs`
+--
+ALTER TABLE `medical_waste_management_costs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `medical_waste_management_costs_medical_waste_id_unique` (`medical_waste_id`),
+  ADD KEY `bill_id_medical_waste` (`bill_id`);
+
+--
+-- Indeks untuk tabel `medicines`
+--
+ALTER TABLE `medicines`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `medicines_batch_number_unique` (`batch_number`),
+  ADD KEY `inventories_id` (`inventory_id`);
+
+--
+-- Indeks untuk tabel `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `model_has_permissions`
+--
+ALTER TABLE `model_has_permissions`
+  ADD PRIMARY KEY (`permission_id`,`model_id`,`model_type`),
+  ADD KEY `model_has_permissions_model_id_model_type_index` (`model_id`,`model_type`);
+
+--
+-- Indeks untuk tabel `model_has_roles`
+--
+ALTER TABLE `model_has_roles`
+  ADD PRIMARY KEY (`role_id`,`model_id`,`model_type`),
+  ADD KEY `model_has_roles_model_id_model_type_index` (`model_id`,`model_type`);
+
+--
+-- Indeks untuk tabel `password_reset_tokens`
+--
+ALTER TABLE `password_reset_tokens`
+  ADD PRIMARY KEY (`email`);
+
+--
+-- Indeks untuk tabel `patients`
+--
+ALTER TABLE `patients`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `patient_diagnose_bills`
+--
+ALTER TABLE `patient_diagnose_bills`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `total_patient_bill_id_in_diagnose` (`total_patient_bill_id`),
+  ADD KEY `diagnose_id` (`diagnose_id`);
+
+--
+-- Indeks untuk tabel `patient_health_data`
+--
+ALTER TABLE `patient_health_data`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `patient` (`patient_id`);
+
+--
+-- Indeks untuk tabel `patient_prescription_bills`
+--
+ALTER TABLE `patient_prescription_bills`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `total_patient_bill_id_in_prescription` (`total_patient_bill_id`),
+  ADD KEY `prescription_id` (`prescription_id`);
+
+--
+-- Indeks untuk tabel `patient_registrations`
+--
+ALTER TABLE `patient_registrations`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `patient_registrations_patient_id_unique` (`patient_id`),
+  ADD UNIQUE KEY `patient_registrations_queue_number_unique` (`queue_number`),
+  ADD KEY `patient_registrations_doctor_id_foreign` (`doctor_id`);
+
+--
+-- Indeks untuk tabel `permissions`
+--
+ALTER TABLE `permissions`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `permissions_name_guard_name_unique` (`name`,`guard_name`);
+
+--
+-- Indeks untuk tabel `prescriptions`
+--
+ALTER TABLE `prescriptions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `prescriptions_medicines_id_foreign` (`medicines_id`),
+  ADD KEY `prescriptions_diagnosis_id_foreign` (`diagnosis_id`);
+
+--
+-- Indeks untuk tabel `purchase_delivery_statuses`
+--
+ALTER TABLE `purchase_delivery_statuses`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `request_item_id` (`request_item_id`);
+
+--
+-- Indeks untuk tabel `purchase_requests`
+--
+ALTER TABLE `purchase_requests`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `purchase_requests_purchase_request_id_unique` (`purchase_request_id`),
+  ADD KEY `requester_id` (`user_id`),
+  ADD KEY `bill_id_purchase_request` (`bill_id`);
+
+--
+-- Indeks untuk tabel `request_items`
+--
+ALTER TABLE `request_items`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `request_items_request_number_unique` (`request_number`),
+  ADD KEY `purchase_request_id` (`purchase_request_id`),
+  ADD KEY `purchase_supplier_id` (`supplier_id`);
+
+--
+-- Indeks untuk tabel `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `roles_name_guard_name_unique` (`name`,`guard_name`);
+
+--
+-- Indeks untuk tabel `role_has_permissions`
+--
+ALTER TABLE `role_has_permissions`
+  ADD PRIMARY KEY (`permission_id`,`role_id`),
+  ADD KEY `role_has_permissions_role_id_foreign` (`role_id`);
+
+--
+-- Indeks untuk tabel `sessions`
+--
+ALTER TABLE `sessions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `sessions_user_id_index` (`user_id`),
+  ADD KEY `sessions_last_activity_index` (`last_activity`);
+
+--
+-- Indeks untuk tabel `staff_salaries`
+--
+ALTER TABLE `staff_salaries`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `staff_id` (`staff_id`);
+
+--
+-- Indeks untuk tabel `staff_salary_costs`
+--
+ALTER TABLE `staff_salary_costs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `staff_salary_id` (`staff_salary_id`),
+  ADD KEY `total_salary_cost_id` (`total_salary_cost_id`);
+
+--
+-- Indeks untuk tabel `suppliers`
+--
+ALTER TABLE `suppliers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `total_patient_bills`
+--
+ALTER TABLE `total_patient_bills`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `total_patient_bills_bill_code_unique` (`bill_code`),
+  ADD KEY `patient_id` (`patient_id`);
+
+--
+-- Indeks untuk tabel `total_staff_salary_costs`
+--
+ALTER TABLE `total_staff_salary_costs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `total_staff_salary_costs_employee_payroll_id_unique` (`employee_payroll_id`),
+  ADD KEY `bill_id_staff_salary` (`bill_id`);
+
+--
+-- Indeks untuk tabel `total_utility_costs`
+--
+ALTER TABLE `total_utility_costs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `total_utility_costs_utility_id_unique` (`utility_id`),
+  ADD KEY `bill_id_utility` (`bill_id`);
+
+--
+-- Indeks untuk tabel `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- Indeks untuk tabel `utility_costs`
+--
+ALTER TABLE `utility_costs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `total_utility_cost_id` (`total_utility_cost_id`);
+
+--
+-- AUTO_INCREMENT untuk tabel yang dibuang
+--
+
+--
+-- AUTO_INCREMENT untuk tabel `bills`
+--
+ALTER TABLE `bills`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `diagnoses`
+--
+ALTER TABLE `diagnoses`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+
+--
+-- AUTO_INCREMENT untuk tabel `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `inventories`
+--
+ALTER TABLE `inventories`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT untuk tabel `jobs`
+--
+ALTER TABLE `jobs`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `marketing_costs`
+--
+ALTER TABLE `marketing_costs`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT untuk tabel `medical_waste_management_costs`
+--
+ALTER TABLE `medical_waste_management_costs`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `medicines`
+--
+ALTER TABLE `medicines`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT untuk tabel `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=581;
+
+--
+-- AUTO_INCREMENT untuk tabel `patients`
+--
+ALTER TABLE `patients`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+
+--
+-- AUTO_INCREMENT untuk tabel `patient_diagnose_bills`
+--
+ALTER TABLE `patient_diagnose_bills`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT untuk tabel `patient_health_data`
+--
+ALTER TABLE `patient_health_data`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT untuk tabel `patient_prescription_bills`
+--
+ALTER TABLE `patient_prescription_bills`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT untuk tabel `patient_registrations`
+--
+ALTER TABLE `patient_registrations`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `permissions`
+--
+ALTER TABLE `permissions`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+
+--
+-- AUTO_INCREMENT untuk tabel `prescriptions`
+--
+ALTER TABLE `prescriptions`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+
+--
+-- AUTO_INCREMENT untuk tabel `purchase_delivery_statuses`
+--
+ALTER TABLE `purchase_delivery_statuses`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT untuk tabel `purchase_requests`
+--
+ALTER TABLE `purchase_requests`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `request_items`
+--
+ALTER TABLE `request_items`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT untuk tabel `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT untuk tabel `staff_salaries`
+--
+ALTER TABLE `staff_salaries`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `staff_salary_costs`
+--
+ALTER TABLE `staff_salary_costs`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `suppliers`
+--
+ALTER TABLE `suppliers`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `total_patient_bills`
+--
+ALTER TABLE `total_patient_bills`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT untuk tabel `total_staff_salary_costs`
+--
+ALTER TABLE `total_staff_salary_costs`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `total_utility_costs`
+--
+ALTER TABLE `total_utility_costs`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT untuk tabel `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT untuk tabel `utility_costs`
+--
+ALTER TABLE `utility_costs`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `diagnoses`
+--
+ALTER TABLE `diagnoses`
+  ADD CONSTRAINT `diagnoses_doctor_id_foreign` FOREIGN KEY (`doctor_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `diagnoses_patient_id_foreign` FOREIGN KEY (`patient_id`) REFERENCES `patients` (`id`) ON DELETE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `inventories`
+--
+ALTER TABLE `inventories`
+  ADD CONSTRAINT `supplier_id` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `marketing_costs`
+--
+ALTER TABLE `marketing_costs`
+  ADD CONSTRAINT `bill_id_marketing` FOREIGN KEY (`bill_id`) REFERENCES `bills` (`id`) ON DELETE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `medical_waste_management_costs`
+--
+ALTER TABLE `medical_waste_management_costs`
+  ADD CONSTRAINT `bill_id_medical_waste` FOREIGN KEY (`bill_id`) REFERENCES `bills` (`id`) ON DELETE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `medicines`
+--
+ALTER TABLE `medicines`
+  ADD CONSTRAINT `inventories_id` FOREIGN KEY (`inventory_id`) REFERENCES `inventories` (`id`) ON DELETE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `model_has_permissions`
+--
+ALTER TABLE `model_has_permissions`
+  ADD CONSTRAINT `model_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `model_has_roles`
+--
+ALTER TABLE `model_has_roles`
+  ADD CONSTRAINT `model_has_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `patient_diagnose_bills`
+--
+ALTER TABLE `patient_diagnose_bills`
+  ADD CONSTRAINT `diagnose_id` FOREIGN KEY (`diagnose_id`) REFERENCES `diagnoses` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `total_patient_bill_id_in_diagnose` FOREIGN KEY (`total_patient_bill_id`) REFERENCES `total_patient_bills` (`id`);
+
+--
+-- Ketidakleluasaan untuk tabel `patient_health_data`
+--
+ALTER TABLE `patient_health_data`
+  ADD CONSTRAINT `patient` FOREIGN KEY (`patient_id`) REFERENCES `patients` (`id`);
+
+--
+-- Ketidakleluasaan untuk tabel `patient_prescription_bills`
+--
+ALTER TABLE `patient_prescription_bills`
+  ADD CONSTRAINT `prescription_id` FOREIGN KEY (`prescription_id`) REFERENCES `prescriptions` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `total_patient_bill_id_in_prescription` FOREIGN KEY (`total_patient_bill_id`) REFERENCES `total_patient_bills` (`id`);
+
+--
+-- Ketidakleluasaan untuk tabel `patient_registrations`
+--
+ALTER TABLE `patient_registrations`
+  ADD CONSTRAINT `patient_registrations_doctor_id_foreign` FOREIGN KEY (`doctor_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `patient_registrations_patient_id_foreign` FOREIGN KEY (`patient_id`) REFERENCES `patients` (`id`) ON DELETE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `prescriptions`
+--
+ALTER TABLE `prescriptions`
+  ADD CONSTRAINT `prescriptions_diagnosis_id_foreign` FOREIGN KEY (`diagnosis_id`) REFERENCES `diagnoses` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `prescriptions_medicines_id_foreign` FOREIGN KEY (`medicines_id`) REFERENCES `medicines` (`id`) ON DELETE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `purchase_delivery_statuses`
+--
+ALTER TABLE `purchase_delivery_statuses`
+  ADD CONSTRAINT `request_item_id` FOREIGN KEY (`request_item_id`) REFERENCES `request_items` (`id`) ON DELETE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `purchase_requests`
+--
+ALTER TABLE `purchase_requests`
+  ADD CONSTRAINT `bill_id_purchase_request` FOREIGN KEY (`bill_id`) REFERENCES `bills` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `requester_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `request_items`
+--
+ALTER TABLE `request_items`
+  ADD CONSTRAINT `purchase_request_id` FOREIGN KEY (`purchase_request_id`) REFERENCES `purchase_requests` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `purchase_supplier_id` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`id`) ON DELETE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `role_has_permissions`
+--
+ALTER TABLE `role_has_permissions`
+  ADD CONSTRAINT `role_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `role_has_permissions_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `staff_salaries`
+--
+ALTER TABLE `staff_salaries`
+  ADD CONSTRAINT `staff_id` FOREIGN KEY (`staff_id`) REFERENCES `users` (`id`) ON DELETE SET NULL;
+
+--
+-- Ketidakleluasaan untuk tabel `staff_salary_costs`
+--
+ALTER TABLE `staff_salary_costs`
+  ADD CONSTRAINT `staff_salary_id` FOREIGN KEY (`staff_salary_id`) REFERENCES `staff_salaries` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `total_salary_cost_id` FOREIGN KEY (`total_salary_cost_id`) REFERENCES `total_staff_salary_costs` (`id`) ON DELETE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `total_patient_bills`
+--
+ALTER TABLE `total_patient_bills`
+  ADD CONSTRAINT `patient_id` FOREIGN KEY (`patient_id`) REFERENCES `patients` (`id`) ON DELETE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `total_staff_salary_costs`
+--
+ALTER TABLE `total_staff_salary_costs`
+  ADD CONSTRAINT `bill_id_staff_salary` FOREIGN KEY (`bill_id`) REFERENCES `bills` (`id`) ON DELETE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `total_utility_costs`
+--
+ALTER TABLE `total_utility_costs`
+  ADD CONSTRAINT `bill_id_utility` FOREIGN KEY (`bill_id`) REFERENCES `bills` (`id`) ON DELETE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `utility_costs`
+--
+ALTER TABLE `utility_costs`
+  ADD CONSTRAINT `total_utility_cost_id` FOREIGN KEY (`total_utility_cost_id`) REFERENCES `total_utility_costs` (`id`) ON DELETE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
