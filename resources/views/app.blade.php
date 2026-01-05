@@ -20,6 +20,11 @@
         </script>
 
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
+        <meta name="description" content="Clinic App is a comprehensive clinic management application designed to streamline healthcare operations, including patient care, inventory, and financial management.">
+        <meta property="og:title" content="{{ config('app.name', 'Clinic App') }}" />
+        <meta property="og:description" content="Clinic App is a comprehensive clinic management application designed to streamline healthcare operations." />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="{{ asset('favicon-96x96.png') }}" />
 
         <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

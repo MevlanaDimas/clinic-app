@@ -41,7 +41,9 @@ export default function Login({ status, canResetPassword }: LoginProps) {
             title="Log in to your account"
             description="Enter your email and password below to log in"
         >
-            <Head title="Log in" />
+            <Head title="Log in">
+                <meta name="description" content="Securely log in to the Clinic App to access patient management, billing, and inventory systems." />
+            </Head>
 
             <Form
                 {...AuthenticatedSessionController.store.form()}

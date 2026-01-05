@@ -39,7 +39,9 @@ export default function InventoriesIndex() {
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Inventories Data" />
+            <Head title="Inventories Data">
+                <meta name="description" content="Track clinic inventory, manage stock levels, and monitor medical supplies." />
+            </Head>
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-5">
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                     <form onSubmit={searchData} className="w-full md:w-1/3">

@@ -22,7 +22,6 @@ use App\Http\Controllers\StaffSalaryCostsController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\UtilityCostsController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 Route::redirect('/', '/login');
 

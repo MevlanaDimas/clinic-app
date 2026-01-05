@@ -59,7 +59,9 @@ export default function BillsIndex() {
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Bills Data" />
+            <Head title="Bills Data">
+                <meta name="description" content="View and manage clinic bills, track payment statuses, and generate financial reports." />
+            </Head>
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-5">
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                     <form onSubmit={searchData} className="w-full md:w-1/3">

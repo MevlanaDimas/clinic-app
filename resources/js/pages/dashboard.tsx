@@ -43,7 +43,9 @@ export default function Dashboard() {
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Dashboard" />
+            <Head title="Dashboard">
+                <meta name="description" content="Clinic Dashboard: Monitor total patients, daily appointments, monthly revenue, and clinic occupancy in real-time." />
+            </Head>
             <div className="p-4 sm:p-6 lg:p-8">
                 <motion.div
                     className="mb-8"
